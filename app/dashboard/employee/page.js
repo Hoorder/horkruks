@@ -125,6 +125,7 @@
 //     );
 // }
 "use client";
+//TODO: Zrobić w obiekcie opcje idąc od usera np. user ma 4 opcje managerowi dodają sie dwie kolejne a leaderowi 5 kolejnych i wyswietlac je w zlaoznosci od rangi ranga usera / ranga usera + manager / leader
 
 import { useEffect, useState } from "react";
 import Image from "next/image";

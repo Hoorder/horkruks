@@ -2,8 +2,9 @@
     --font-geist-sans: "Geist Sans";
 
     --font-color: #171717;
+    --button-color: #171717;
     --label-font-color: #64748b;
-    --border-color: E2E8F0;
+    --border-color: #e2e8f0;
     --border-radius: 8px;
 
     --input-background: #f8f8f8;
@@ -19,6 +20,23 @@
     --base-fs: 1rem;
     --large-fs: 1.625rem;
     --xlarge-fs: 2rem;
+
+    --extraLight: 200;
+    --light: 300;
+    --regular: 400;
+    --medium: 500;
+    --semiBold: 600;
+
+    /* 
+    ExtraLight 200
+    Light 300
+    Regular 400
+    Medium 500
+    SemiBold 600
+    Bold 700
+    ExtraBold 800
+    Black 900
+    */
 }
 
 html,
@@ -32,7 +50,7 @@ body {
     background: var(--white);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
     font-weight: 300;
-    font-size: 1.3rem;
+    font-size: var(--small-fs);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

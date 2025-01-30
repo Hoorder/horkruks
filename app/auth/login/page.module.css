@@ -8,6 +8,14 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: white;
+    z-index: 1;
+}
+
+.company_description {
+    font-size: var(--base-fs);
+    font-weight: var(--extraLight);
+    font-style: italic;
 }
 
 .container {
@@ -15,5 +23,26 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(100vh - 200px);
+}
+
+.logoContainer {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.fomContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 77px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.passwordContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
