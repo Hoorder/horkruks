@@ -27,5 +27,6 @@ export async function middleware(req) {
     ) {
         return NextResponse.redirect(new URL(`/dashboard/${role}`, req.url));
     }
+
     return res;
 }

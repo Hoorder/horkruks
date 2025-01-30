@@ -7,7 +7,7 @@ const geistSans = Geist({
 });
 
 export const metadata = {
-    title: "Horkruks",
+    title: "Horkruks | 01.02.2025",
     description: "System do zarządzania firmą pogrzebową",
 };
 
