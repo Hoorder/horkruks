@@ -1,0 +1,33 @@
+.container {
+    width: 230px;
+    height: 100vh;
+    border-right: 1px solid var(--border-color);
+}
+
+.category {
+    padding-top: 18px;
+}
+
+.categoryName {
+    font-weight: var(--medium);
+    padding-left: 30px;
+    padding-bottom: 12px;
+}
+
+.container ul {
+}
+
+.container ul > a > li {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+
+    width: 200px;
+    height: 40px;
+    color: var(--black);
+    border-radius: 0px 8px 8px 0px;
+}
+
+.container ul > a > li > p {
+    padding-left: 20px;
+}

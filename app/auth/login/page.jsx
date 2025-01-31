@@ -1,104 +1,23 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import styles from "./page.module.css";
-import { FullCurretDate } from "../components/FullCurretDate/FullCurretDate";
-import { Input } from "@/app/dashboard/components/Input/Input";
-import { Button } from "@/app/dashboard/components/Button/Button";
-
-const rolePath = {
-    leader: "/dashboard/leader",
-    manager: "/dashboard/manager",
-    employee: "/dashboard/employee",
-};
+import { FullCurrentDate } from "../../dashboard/components/FullCurrentDate/FullCurrentDate";
+import { CompanyLogo } from "../components/CompanyLogo/CompanyLogo";
+import { LoginForm } from "../components/LoginForm/LoginForm";
 
 export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loginErrMsg, setLoginErrMsg] = useState("");
-    const router = useRouter();
-
-    const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            const response = await fetch("/api/session", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                if (response.status === 401) {
-                    setLoginErrMsg(errorData.error);
-                } else {
-                    throw new Error(`Resp: ${response.statusText}`);
-                }
-                return;
-            }
-
-            const loginData = await response.json();
-            const destination = rolePath[loginData.role];
-
-            if (destination) {
-                router.replace(destination);
-            }
-        } catch (error) {
-            console.error("Błąd w trakcie żądania:", error);
-        }
-    };
-
     return (
         <>
             <nav className={styles.nav}>
-                <FullCurretDate />
+                <FullCurrentDate />
             </nav>
 
             <div className={styles.container}>
                 <div className={styles.logoContainer}>
-                    <Image
-                        src="/logo.svg"
-                        width={500}
-                        height={130}
-                        alt="Picture of the author"
-                        priority={true}
-                    />
-                    <p className={styles.company_description}>
-                        System do zarządzania zakładem pogrzebowym
-                    </p>
+                    <CompanyLogo />
                 </div>
                 <div className={styles.fomContainer}>
-                    <form onSubmit={handleSubmit}>
-                        <Input
-                            width="290px"
-                            fontWeight={"500"}
-                            label={"E-mail:"}
-                            nameAndId={"name"}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <Input
-                            width="290px"
-                            label={"Hasło:"}
-                            fontWeight={"500"}
-                            type={"password"}
-                            nameAndId={"password"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-
-                        <div className={styles.passwordContainer}>
-                            <Link href="/">Zapomniałem hasła</Link>
-                            <Button>Zaloguj</Button>
-                        </div>
-                        <p>{loginErrMsg}</p>
-                    </form>
+                    <LoginForm />
                 </div>
             </div>
         </>

@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
-import styles from "./FullCurretDate.module.css";
+"use client";
 
-export function FullCurretDate() {
+import { useState, useEffect } from "react";
+import clsx from "clsx"; // Umożliwia łączenie klas
+import styles from "./FullCurrentDate.module.css";
+
+export function FullCurrentDate({ className }) {
     const [now, setNow] = useState(new Date());
 
     useEffect(() => {
@@ -23,7 +26,7 @@ export function FullCurretDate() {
     ];
 
     return (
-        <div className={styles.container}>
+        <div className={clsx(styles.container, className)}>
             <p>{daysOfWeek[now.getDay()]}</p>
             <div className={styles.data_container}>
                 <p>
@@ -33,7 +36,7 @@ export function FullCurretDate() {
             </div>
             <p>
                 {now.getDate().toString().padStart(2, "0")}.
-                {(now.getMonth() + 1).toString().padStart(2, "0")} .
+                {(now.getMonth() + 1).toString().padStart(2, "0")}.
                 {now.getFullYear()}
             </p>
         </div>
