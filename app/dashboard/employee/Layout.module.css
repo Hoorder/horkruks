@@ -1,0 +1,42 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.topBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Ustaw wysokość górnej belki */
+    background-color: white;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+}
+
+.mainContainer {
+    display: flex;
+    flex-grow: 1;
+    height: calc(100vh - 60px);
+}
+
+.navigation {
+    width: 250px;
+    height: 100%;
+    background-color: #f8f9fa;
+    position: fixed;
+    left: 0;
+    top: 60px; /* Dostosowanie do wysokości TopBar */
+    bottom: 0;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: var(--background-mute);
+}

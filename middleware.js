@@ -13,7 +13,10 @@ export async function middleware(req) {
         return NextResponse.redirect(new URL("/auth/login", req.url));
     }
 
-    if (path.startsWith("/auth/login") && loggedIn) {
+    if (
+        (path.startsWith("/auth/login") && loggedIn) ||
+        (path === "/dashboard" && loggedIn)
+    ) {
         return NextResponse.redirect(new URL(`/dashboard/${role}`, req.url));
     }
 
@@ -24,5 +27,6 @@ export async function middleware(req) {
     ) {
         return NextResponse.redirect(new URL(`/dashboard/${role}`, req.url));
     }
+
     return res;
 }
