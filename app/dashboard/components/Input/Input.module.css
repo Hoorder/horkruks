@@ -23,3 +23,10 @@
     border: 1px solid var(--border-color);
     padding-left: 15px;
 }
+
+@media (max-width: 420px) {
+    .container {
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
+}

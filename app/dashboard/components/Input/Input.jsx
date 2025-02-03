@@ -1,3 +1,5 @@
+"use client";
+
 import style from "./Input.module.css";
 
 export function Input({
@@ -30,6 +32,8 @@ export function Input({
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
+                    min={0}
+                    max={10}
                 />
             </div>
         </>
