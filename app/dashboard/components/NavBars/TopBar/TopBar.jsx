@@ -15,7 +15,7 @@ export function TopBar() {
                     priority={true}
                 />
 
-                <FullCurrentDate className={styles.test} />
+                <FullCurrentDate className={styles.currentDate} />
 
                 <HelloNav />
             </div>

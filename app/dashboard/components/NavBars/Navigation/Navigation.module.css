@@ -2,6 +2,7 @@
     width: 230px;
     height: 100vh;
     border-right: 1px solid var(--border-color);
+    background-color: var(--white);
 }
 
 .category {
@@ -15,6 +16,7 @@
 }
 
 .container ul {
+    transition: 5s;
 }
 
 .container ul > a > li {
@@ -30,4 +32,13 @@
 
 .container ul > a > li > p {
     padding-left: 20px;
+}
+
+@media (max-width: 750px) {
+    .container {
+        position: absolute;
+        overflow-y: scroll;
+        transform: translateX(-230px);
+        /* display: none; */
+    }
 }

@@ -1,18 +1,18 @@
-const defaultHref = `/dashboard/employee`;
+// const defaultHref = `/dashboard/employee`;
 
 export const categories = [
     {
         name: "Dashboard",
         allowedRoles: ["employee", "manager", "leader"],
-        items: [{ name: "Strona główna", href: `${defaultHref}` }],
+        items: [{ name: "Strona główna", href: `` }],
     },
     {
         name: "Ceremonia",
         allowedRoles: ["leader"],
         items: [
-            { name: "Dodaj pogrzeb", href: `${defaultHref}/dodaj-pogrzeb` },
-            { name: "Zleć przewóz", href: `${defaultHref}/zlec-przewoz` },
-            { name: "Historia ceremonii", href: `${defaultHref}/historia` },
+            { name: "Dodaj pogrzeb", href: `/add-funeral` },
+            { name: "Zleć przewóz", href: `/zlec-przewoz` },
+            { name: "Historia ceremonii", href: `/historia` },
         ],
     },
     {
@@ -21,10 +21,10 @@ export const categories = [
         items: [
             {
                 name: "Dodaj zlecenie",
-                href: `${defaultHref}/dodaj-pogrzeb`,
+                href: `/add-funeral`,
             },
-            { name: "Przewozy", href: `${defaultHref}/zlec-przewoz` },
-            { name: "Historia ceremonii", href: `${defaultHref}/historia` },
+            { name: "Przewozy", href: `/zlec-przewoz` },
+            { name: "Historia ceremonii", href: `/historia` },
         ],
     },
     {
@@ -33,52 +33,52 @@ export const categories = [
         items: [
             {
                 name: "Dodaj zlecenie",
-                href: `${defaultHref}/dodaj-pogrzeb`,
+                href: `/add-funeral`,
             },
-            { name: "Historia ceremonii", href: `${defaultHref}/historia` },
+            { name: "Historia ceremonii", href: `/historia` },
         ],
     },
     {
         name: "Personel",
         allowedRoles: ["leader"],
         items: [
-            { name: "Dodaj pracownika", href: `${defaultHref}/dodaj` },
-            { name: "Pracownicy", href: `${defaultHref}/personel` },
-            { name: "Zespoły", href: `${defaultHref}/zespoly` },
+            { name: "Dodaj pracownika", href: `/dodaj` },
+            { name: "Pracownicy", href: `/personel` },
+            { name: "Zespoły", href: `/zespoly` },
         ],
     },
     {
         name: "Personel",
         allowedRoles: ["employee", "manager"],
-        items: [{ name: "Mój zespół", href: `${defaultHref}/dodaj` }],
+        items: [{ name: "Mój zespół", href: `/dodaj` }],
     },
     {
         name: "Analityka",
         allowedRoles: ["employee", "manager", "leader"],
         items: [
-            { name: "Statystyki", href: `${defaultHref}/statystyki` },
-            { name: "Wyszukiwarka", href: `${defaultHref}/wyszukiwarka` },
+            { name: "Statystyki", href: `/statystyki` },
+            { name: "Wyszukiwarka", href: `/wyszukiwarka` },
         ],
     },
     {
         name: "Finanse",
         allowedRoles: ["leader"],
         items: [
-            { name: "Wypłaty", href: `${defaultHref}/wyplaty` },
-            { name: "Faktury", href: `${defaultHref}/faktury` },
+            { name: "Wypłaty", href: `/wyplaty` },
+            { name: "Faktury", href: `/faktury` },
         ],
     },
     {
         name: "Finanse",
         allowedRoles: ["employee", "manager"],
         items: [
-            { name: "Wypłaty", href: `${defaultHref}/wyplaty` },
-            { name: "Rozliczenie", href: `${defaultHref}/rozliczenie` },
+            { name: "Wypłaty", href: `/wyplaty` },
+            { name: "Rozliczenie", href: `/rozliczenie` },
         ],
     },
     {
         name: "Inne",
         allowedRoles: ["employee", "manager", "leader"],
-        items: [{ name: "Ustawienia", href: `${defaultHref}/ustawienia` }],
+        items: [{ name: "Ustawienia", href: `/ustawienia` }],
     },
 ];

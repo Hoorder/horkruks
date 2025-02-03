@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Ustaw wysokość górnej belki */
+    height: 60px;
     background-color: white;
     z-index: 1000;
     border-bottom: 1px solid #ddd;
@@ -28,7 +28,7 @@
     background-color: #f8f9fa;
     position: fixed;
     left: 0;
-    top: 60px; /* Dostosowanie do wysokości TopBar */
+    top: 60px;
     bottom: 0;
     overflow-y: auto;
     border-right: 1px solid #ddd;
@@ -39,4 +39,10 @@
     padding: 20px;
     overflow-y: auto;
     background-color: var(--background-mute);
+}
+
+@media (max-width: 450px) {
+    .content {
+        padding: 0px;
+    }
 }

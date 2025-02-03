@@ -59,7 +59,7 @@ export function HelloNav() {
     return (
         <div className={styles.container}>
             <div className={styles.welcome}>
-                <p>Witaj, {name}!</p>
+                <p>Witaj, <b>{name}!</b></p>
             </div>
 
             <div className={styles.photo} onClick={handleClick}>

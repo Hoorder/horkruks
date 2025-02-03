@@ -37,7 +37,9 @@ export function Navigation() {
                                 <NavigationItem
                                     key={name}
                                     name={name}
-                                    href={href}
+                                    href={`/dashboard/${
+                                        role ?? `${role}`
+                                    }${href}`}
                                 />
                             ))}
                         </ul>

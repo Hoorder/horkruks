@@ -6,12 +6,12 @@
     border: 1px solid var(--border-color);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
     .container {
         padding: 10px 20px;
     }
 
-    .test {
+    .currentDate {
         display: none !important;
     }
 }
