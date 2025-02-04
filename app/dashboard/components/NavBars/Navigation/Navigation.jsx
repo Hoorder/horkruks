@@ -26,7 +26,7 @@ export function Navigation() {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${styles.toggle}`}>
             {categories
                 .filter(({ allowedRoles }) => allowedRoles.includes(role))
                 .map(({ name, items }) => (

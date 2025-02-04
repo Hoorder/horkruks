@@ -1,8 +1,14 @@
 .container {
-    width: 230px;
+    min-width: 230px;
     height: 100vh;
     border-right: 1px solid var(--border-color);
     background-color: var(--white);
+}
+
+@media (max-width: 750px) {
+    .container {
+        height: calc(100% - 117px);
+    }
 }
 
 .category {
@@ -35,10 +41,9 @@
 }
 
 @media (max-width: 750px) {
-    .container {
+    .toggle {
         position: absolute;
         overflow-y: scroll;
         transform: translateX(-230px);
-        /* display: none; */
     }
 }
