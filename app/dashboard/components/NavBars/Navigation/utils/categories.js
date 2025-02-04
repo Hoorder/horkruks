@@ -56,7 +56,7 @@ export const categories = [
         name: "Analityka",
         allowedRoles: ["employee", "manager", "leader"],
         items: [
-            { name: "Statystyki", href: `/stats` },
+            { name: "Statystyki", href: `/statistics` },
             { name: "Wyszukiwarka", href: `/search` },
         ],
     },

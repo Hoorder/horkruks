@@ -42,8 +42,9 @@ export async function GET() {
         AND funeral_ceremony_payout > 0) AS funerals_this_year_to_date,
         
         SUM(YEAR(task_date) = YEAR(CURDATE()) - 1 
-        AND funeral_ceremony_payout > 0) AS funerals_last_year
+        AND funeral_ceremony_payout > 0) AS funerals_last_year,
 
+        SUM(funeral_ceremony_payout > 0) AS "total_funerals"
 
         FROM funeral_tasks 
         WHERE id_users_fk = "?";
