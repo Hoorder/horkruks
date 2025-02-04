@@ -3,6 +3,7 @@
 import style from "./Input.module.css";
 
 export function Input({
+    disabled = false,
     type = "text",
     nameAndId,
     value,
@@ -34,6 +35,7 @@ export function Input({
                     placeholder={placeholder}
                     min={0}
                     max={10}
+                    disabled={disabled}
                 />
             </div>
         </>

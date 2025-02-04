@@ -5,6 +5,7 @@
     background-color: var(--white);
     border-radius: var(--border-radius);
     overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
 .head {
@@ -15,12 +16,6 @@
     padding: 22px 30px;
     padding-bottom: 0px;
 }
-
-/* @media (max-width: 450px) {
-    .head {
-        border-top-left-radius: 0px;
-    }
-} */
 
 .head p:first-of-type {
     font-size: var(--xlarge-fs);
