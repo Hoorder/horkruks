@@ -57,7 +57,7 @@
 }
 
 .table thead tr th {
-    font-weight: var(--extraLight);
+    font-weight: var(--medium);
     padding: 10px 15px;
 }
 
