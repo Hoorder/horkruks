@@ -17,7 +17,8 @@
 }
 
 .head p:last-of-type {
-    font-weight: var(--extraLight);
+    color: var(--label-font-color);
+    font-weight: var(--regular);
     line-height: 1.5;
 }
 
