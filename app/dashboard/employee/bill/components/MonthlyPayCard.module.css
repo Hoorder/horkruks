@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 600px;
+    margin: 30px;
+    margin-bottom: 70px;
+}
+
+.header {
+    color: var(--white);
+    font-size: var(--large-fs);
+    font-weight: var(--normal);
+    background-color: var(--black);
+    padding: 20px 25px;
+
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+
+@media (max-width: 555px) {
+    .body {
+        overflow-y: scroll;
+    }
+
+    .container {
+        margin: 10px;
+        margin-bottom: 70px;
+    }
+}
+
+.feeForCard {
+    display: flex;
+    justify-content: space-between;
+
+    flex-grow: 1;
+    padding: 20px 20px;
+    border-bottom: 1px solid var(--border-color);
+
+    white-space: nowrap;
+}
+
+.feeForCard p:nth-child(1) {
+    min-width: 160px;
+    font-weight: var(--medium);
+}
+
+.feeForCard p:nth-child(2) {
+    min-width: 100px;
+    text-align: center;
+}
+
+.feeForCard p:nth-child(3) {
+    min-width: 100px;
+    font-weight: var(--medium);
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--white);
+    font-size: var(--base-fs);
+    font-weight: var(--medium);
+    background-color: var(--black);
+    padding: 20px 25px;
+
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
