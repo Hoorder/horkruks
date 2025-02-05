@@ -75,6 +75,7 @@
 
 .table tbody tr td:last-of-type {
     padding: 10px 20px;
+    font-weight: var(--medium);
 }
 
 .deleteBtn {

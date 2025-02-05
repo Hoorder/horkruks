@@ -41,6 +41,7 @@
 .table thead tr th {
     font-weight: var(--medium);
     padding: 10px 15px;
+    white-space: nowrap;
 }
 
 .table tbody {
@@ -49,6 +50,7 @@
 
 .table tbody tr {
     border: 1px solid var(--border-color);
+    white-space: nowrap;
 }
 
 .table tbody tr td {

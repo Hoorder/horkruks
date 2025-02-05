@@ -46,4 +46,8 @@
         overflow-y: scroll;
         transform: translateX(-230px);
     }
+
+    .show {
+        transform: translateX(0px);
+    }
 }

@@ -5,7 +5,7 @@ import styles from "./MobileNav.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export function MobileNav() {
+export function MobileNav({ setIsMenuShown }) {
     const [role, setRole] = useState("");
     const path = `/dashboard/${role}`;
 
@@ -27,17 +27,16 @@ export function MobileNav() {
 
         fetchUserData();
     }, []);
-    //TODO: Sprawdzić czy data jest dzisiejsza w dodawanym zleceniu
-    //TODO: Ogarnąć wysuwanie menu
+
+    const handleCLick = () => {
+        setIsMenuShown((prev) => !prev);
+    };
 
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.wrapper}>
-                    <Link
-                        href={`${path}/add-funeral`}
-                        className={styles.option}
-                    >
+                    <div className={styles.option} onClick={handleCLick}>
                         <Image
                             src={"/menu.svg"}
                             width={20}
@@ -45,7 +44,7 @@ export function MobileNav() {
                             alt="Menu"
                         />
                         <p>Menu</p>
-                    </Link>
+                    </div>
                     <Link
                         href={`${path}/add-funeral`}
                         className={styles.option}

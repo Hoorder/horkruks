@@ -64,7 +64,7 @@ export const categories = [
         name: "Finanse",
         allowedRoles: ["leader"],
         items: [
-            { name: "Wypłaty", href: `/withdrawals` },
+            { name: "Wypłaty", href: `/salary` },
             { name: "Faktury", href: `/invoices` },
         ],
     },
@@ -72,7 +72,7 @@ export const categories = [
         name: "Finanse",
         allowedRoles: ["employee", "manager"],
         items: [
-            { name: "Wypłaty", href: `/withdrawals` },
+            { name: "Wypłaty", href: `/salary` },
             { name: "Rozliczenie", href: `/bill` },
         ],
     },
