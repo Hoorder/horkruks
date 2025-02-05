@@ -6,6 +6,7 @@ import styles from "./MonthlyPayCard.module.css";
 export function MonthlyPayCard() {
     const [salaryData, setSalaryData] = useState([]);
     const [now, setNow] = useState(new Date());
+    const [errorMsg, setErrorMsg] = useState();
 
     const getCurrentMonthName = () => {
         const monthsNames = [
@@ -34,7 +35,8 @@ export function MonthlyPayCard() {
 
                 if (!response.ok) {
                     const errorLog = await response.json();
-                    throw new Error(errorLog.error);
+                    setErrorMsg(errorLog.error);
+                    return;
                 }
 
                 const data = await response.json();
@@ -50,6 +52,8 @@ export function MonthlyPayCard() {
     const currentMonth = getCurrentMonthName();
     return (
         <>
+            {errorMsg && <p className={styles.errMsg}>{errorMsg}</p>}
+
             {salaryData.map((data) => (
                 <div className={styles.container} key={data.month}>
                     <div className={styles.header}>

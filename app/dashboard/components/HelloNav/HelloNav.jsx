@@ -45,7 +45,7 @@ export function HelloNav() {
                     `Nie udało się pobrać danych z sesji: ${response.statusText}`
                 );
 
-            router.replace("/auth/login");
+            router.replace("/");
             return;
         } catch (error) {
             console.error("Błąd w trakcie żądania:", error);
@@ -59,7 +59,9 @@ export function HelloNav() {
     return (
         <div className={styles.container}>
             <div className={styles.welcome}>
-                <p>Witaj, <b>{name}!</b></p>
+                <p>
+                    Witaj, <b>{name}!</b>
+                </p>
             </div>
 
             <div className={styles.photo} onClick={handleClick}>

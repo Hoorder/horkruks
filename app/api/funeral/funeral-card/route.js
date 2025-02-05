@@ -37,7 +37,7 @@ export async function GET() {
             WHERE funeral_locality = f.funeral_locality),'%Y-%m-%d') AS last_funeral_date
         FROM funeral_cards f
         INNER JOIN users u ON f.team_manager_id_fk = u.id_users
-        WHERE CONCAT(mourner_one_id_fk, mourner_two_id_fk) LIKE '%?%'
+        WHERE CONCAT(mourner_one_id_fk, mourner_two_id_fk, mourner_three_id_fk, mourner_four_id_fk, mourner_five_id_fk, mourner_six_id_fk, mourner_seven_id_fk) LIKE '%?%'
         AND f.funeral_date >= CURDATE()
         AND f.order_completed_at IS NULL;`;
 
