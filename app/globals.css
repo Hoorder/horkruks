@@ -17,10 +17,10 @@
     --white: #ffffff;
     --black: #171717;
 
-    --small-fs: 0.875rem;
-    --base-fs: 1rem;
-    --large-fs: 1.625rem;
-    --xlarge-fs: 2rem;
+    --small-fs: 0.875rem; /* 14px  */
+    --base-fs: 1rem; /* 16px  */
+    --large-fs: 1.625rem; /* 26px  */
+    --xlarge-fs: 2rem; /* 32px  */
 
     --extraLight: 200;
     --light: 300;

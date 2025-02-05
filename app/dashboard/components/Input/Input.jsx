@@ -1,6 +1,9 @@
+"use client";
+
 import style from "./Input.module.css";
 
 export function Input({
+    disabled = false,
     type = "text",
     nameAndId,
     value,
@@ -30,6 +33,9 @@ export function Input({
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
+                    min={0}
+                    max={10}
+                    disabled={disabled}
                 />
             </div>
         </>

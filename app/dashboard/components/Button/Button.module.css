@@ -1,6 +1,6 @@
 .button {
     cursor: pointer;
-    font-size: 16px;
+    font-size: var(--base-fs);
     font-weight: var(--medium);
     font-family: var(--font-geist-sans);
     color: var(--white);

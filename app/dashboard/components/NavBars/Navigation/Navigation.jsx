@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { NavigationItem } from "./NavigationItem/NavigationItem";
 import { categories } from "./utils/categories";
 
-export function Navigation() {
+export function Navigation({ isMenuShown }) {
     const [role, setRole] = useState(null);
 
     useEffect(() => {
@@ -26,7 +26,11 @@ export function Navigation() {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <div
+            className={`${styles.container} ${styles.toggle} ${
+                isMenuShown && styles.show
+            }`}
+        >
             {categories
                 .filter(({ allowedRoles }) => allowedRoles.includes(role))
                 .map(({ name, items }) => (
@@ -37,7 +41,9 @@ export function Navigation() {
                                 <NavigationItem
                                     key={name}
                                     name={name}
-                                    href={href}
+                                    href={`/dashboard/${
+                                        role ?? `${role}`
+                                    }${href}`}
                                 />
                             ))}
                         </ul>

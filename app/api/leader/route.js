@@ -12,8 +12,8 @@ function jsonResponse(data, status = 200) {
 }
 
 async function getSession() {
-    const cookieStore = await cookies(); // Pobieramy ciasteczka
-    return getIronSession(cookieStore, sessionOptions); // Zwracamy sesję na podstawie ciasteczek
+    const cookieStore = await cookies();
+    return getIronSession(cookieStore, sessionOptions);
 }
 
 export async function GET() {

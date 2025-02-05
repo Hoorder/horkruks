@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    width: 400px;
+}
+
+.header {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background-color: var(--black);
+    padding: 18px;
+
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    border-right: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+    border-top: 1px solid var(--black);
+}
+
+.header p {
+    font-size: 20px;
+    font-weight: var(--medium);
+    color: var(--white);
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+
+@media (max-width: 405px) {
+    .searchContainer {
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.searchContainer button {
+    cursor: pointer;
+    font-size: var(--small-fs);
+    font-weight: var(--medium);
+    font-family: var(--font-geist-sans);
+    color: var(--white);
+    padding: 8px 40px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--button-color);
+    transition: all 0.2s;
+}
+
+.table {
+    width: 100%;
+    padding: 25px;
+    border-collapse: collapse;
+}
+
+.table thead {
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.table thead tr th {
+    font-weight: var(--medium);
+    padding: 10px 15px;
+}
+
+.table tbody {
+    text-align: center;
+}
+
+.table tbody tr {
+    border: 1px solid var(--border-color);
+}
+
+.table tbody tr td {
+    padding: 10px 0;
+}
+
+.errorMsg {
+    text-align: center;
+    padding-bottom: 10px;
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}

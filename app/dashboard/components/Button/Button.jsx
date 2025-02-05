@@ -9,7 +9,7 @@ const colors = {
 export function Button({
     type = "submit",
     children,
-    onClick = () => {},
+    onClick = null,
     background = "#171717",
 }) {
     const backgroundColor = colors[background] || background;

@@ -1,0 +1,78 @@
+.container {
+    flex-grow: 1;
+    border-right: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.head {
+    color: var(--black);
+    background-color: var(--white);
+    padding: 22px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.head p:first-of-type {
+    font-size: var(--xlarge-fs);
+    font-weight: var(--semiBold);
+}
+
+.head p:last-of-type {
+    color: var(--label-font-color);
+    font-weight: var(--regular);
+    line-height: 1.5;
+}
+
+.tableContainer {
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.table {
+    margin: 25px;
+    padding: 25px;
+    border-collapse: collapse;
+}
+
+.table thead {
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.table thead tr th {
+    font-weight: var(--medium);
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.table tbody {
+    text-align: center;
+}
+
+.table tbody tr {
+    border: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.table tbody tr td {
+    padding: 10px 0;
+}
+
+.table tbody tr td:last-of-type {
+    padding: 10px 20px;
+}
+
+@media (max-width: 1587px) {
+    .head {
+        border: 1px solid var(--border-color);
+    }
+}
+
+@media (max-width: 515px) {
+    .table {
+        margin: 0;
+    }
+}
+
+.deleteBtn {
+    cursor: pointer;
+}

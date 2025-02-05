@@ -4,6 +4,7 @@ export const categoryIcons = {
     "Dodaj zlecenie": "/plus-circle.svg",
     "Zleć przewóz": "/briefcase.svg",
     "Historia ceremonii": "/book-open.svg",
+    "Historia zleceń": "/book-open.svg",
     "Dodaj pracownika": "/user-plus.svg",
     "Mój zespół": "/users.svg",
     Pracownicy: "/user-settings.svg",

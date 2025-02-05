@@ -54,7 +54,7 @@ export function LoginForm() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <Input
                     width="275px"
                     fontWeight={"500"}

@@ -1,7 +1,14 @@
 .container {
-    width: 230px;
+    min-width: 230px;
     height: 100vh;
     border-right: 1px solid var(--border-color);
+    background-color: var(--white);
+}
+
+@media (max-width: 750px) {
+    .container {
+        height: calc(100% - 117px);
+    }
 }
 
 .category {
@@ -15,6 +22,7 @@
 }
 
 .container ul {
+    transition: 5s;
 }
 
 .container ul > a > li {
@@ -22,7 +30,7 @@
     align-items: center;
     padding-left: 30px;
 
-    width: 200px;
+    width: 202px;
     height: 40px;
     color: var(--black);
     border-radius: 0px 8px 8px 0px;
@@ -30,4 +38,16 @@
 
 .container ul > a > li > p {
     padding-left: 20px;
+}
+
+@media (max-width: 750px) {
+    .toggle {
+        position: absolute;
+        overflow-y: scroll;
+        transform: translateX(-230px);
+    }
+
+    .show {
+        transform: translateX(0px);
+    }
 }
