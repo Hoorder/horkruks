@@ -42,22 +42,6 @@
     }
 }
 
-.inputContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.inputContainer select {
-    height: 35px;
-    text-align: center;
-    font-family: var(--font-geist-sans);
-    font-weight: var(--medium);
-    background-color: var(--input-background);
-    border: 1px solid var(--border-color);
-    border-radius: var(--button-color);
-}
-
 .searchContainer button {
     cursor: pointer;
     font-size: var(--small-fs);
