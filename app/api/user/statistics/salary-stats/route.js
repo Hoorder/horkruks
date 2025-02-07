@@ -57,11 +57,11 @@ export async function GET() {
                AND body_preparation_payout > 0 THEN 1 END) AS "last_year_month_preparation_count",
 
     SUM(CASE WHEN task_date BETWEEN DATE_FORMAT(CURDATE(), '%Y-%m-01') AND LAST_DAY(CURDATE()) 
-             THEN working_hours_place ELSE 0 END) AS "current_month_working_hours",
+             THEN working_hours_number ELSE 0 END) AS "current_month_working_hours",
 
     SUM(CASE WHEN task_date BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 YEAR), '%Y-%m-01') 
              AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) 
-             THEN working_hours_place ELSE 0 END) AS "last_year_same_month_working_hours"
+             THEN working_hours_number ELSE 0 END) AS "last_year_same_month_working_hours"
 
 FROM funeral_tasks 
 WHERE id_users_fk = "?";

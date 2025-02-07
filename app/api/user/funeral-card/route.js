@@ -23,25 +23,39 @@ export async function GET() {
             return jsonResponse({ error: "Brak id" }, 401);
         }
 
-        const query = `SELECT
-        id_funeral_cards,
-        funeral_locality AS locality,
-        DATE_FORMAT(f.funeral_date, '%Y-%m-%d') AS funeral_date,
-        CONCAT(u.first_name," ",u.last_name) AS manager,
-        flower_notes,
-        DATE_FORMAT(meeting_time, '%H:%i') AS meeting_time,
-        DATE_FORMAT(entrance_time, '%H:%i') AS entrance_time,
-        DATE_FORMAT(funeral_time, '%H:%i') AS funeral_time,
-        DATE_FORMAT((SELECT MAX(funeral_date)
-            FROM funeral_cards
-            WHERE funeral_locality = f.funeral_locality),'%Y-%m-%d') AS last_funeral_date
-        FROM funeral_cards f
-        INNER JOIN users u ON f.team_manager_id_fk = u.id_users
-        WHERE CONCAT(mourner_one_id_fk, mourner_two_id_fk, mourner_three_id_fk, mourner_four_id_fk, mourner_five_id_fk, mourner_six_id_fk, mourner_seven_id_fk) LIKE '%?%'
-        AND f.funeral_date >= CURDATE()
-        AND f.order_completed_at IS NULL;`;
+        const query = `
+SELECT
+    f.id_funeral_cards,
+    f.funeral_locality AS locality,
+    DATE_FORMAT(f.funeral_date, '%Y-%m-%d') AS funeral_date,
+    CONCAT(u.first_name, " ", u.last_name) AS manager,
+    f.flower_notes,
+    DATE_FORMAT(f.meeting_time, '%H:%i') AS meeting_time,
+    DATE_FORMAT(f.entrance_time, '%H:%i') AS entrance_time,
+    DATE_FORMAT(f.funeral_time, '%H:%i') AS funeral_time,
+    DATE_FORMAT(
+        (SELECT MAX(funeral_date)
+         FROM funeral_cards
+         WHERE funeral_locality = f.funeral_locality),
+        '%Y-%m-%d'
+    ) AS last_funeral_date,
+    t.confirmation
+FROM funeral_cards f
+INNER JOIN users u ON f.team_manager_id_fk = u.id_users
+LEFT JOIN funeral_tasks t ON t.id_funeral_cards_fk = f.id_funeral_cards AND t.id_users_fk = ?
+WHERE CONCAT(
+        mourner_one_id_fk, mourner_two_id_fk, mourner_three_id_fk, 
+        mourner_four_id_fk, mourner_five_id_fk, mourner_six_id_fk, 
+        mourner_seven_id_fk
+    ) LIKE '%?%'
+AND f.funeral_date >= CURDATE()
+AND f.order_completed_at IS NULL;
+        `;
 
-        const [rows] = await db.query(query, [session.user_id]);
+        const [rows] = await db.query(query, [
+            session.user_id,
+            session.user_id,
+        ]);
 
         if (rows.length === 0) {
             return jsonResponse(
@@ -58,3 +72,88 @@ export async function GET() {
         );
     }
 }
+
+export async function PUT(request) {
+    try {
+        const session = await getSession();
+
+        if (!session.user_id) {
+            return jsonResponse({ error: "Brak id" }, 401);
+        }
+
+        const { funeral_card_id, confirmation } = await request.json();
+
+        if (!funeral_card_id) {
+            return jsonResponse({ error: "Brak ID pogrzebu" }, 400);
+        }
+
+        const query = `
+
+        UPDATE funeral_tasks
+        SET confirmation = ?
+        WHERE id_funeral_cards_fk = ? AND id_users_fk = ?;
+
+        `;
+
+        const values = [confirmation, funeral_card_id, session.user_id];
+
+        const [result] = await db.query(query, values);
+
+        if (result.affectedRows === 0) {
+            return jsonResponse(
+                { error: "Nie znaleziono pogrzebu lub brak zmian" },
+                404
+            );
+        }
+
+        return jsonResponse({
+            message: "Dane pogrzebu zostały zaktualizowane",
+        });
+    } catch (error) {
+        return jsonResponse({ error: "Błąd podczas aktualizacji danych" }, 500);
+    }
+}
+
+// import { useState } from "react";
+
+// const FuneralCardSelect = ({ initialValue }) => {
+//     const [selectedValue, setSelectedValue] = useState(initialValue);
+
+//     const handleChange = async (event) => {
+//         const newValue = event.target.value;
+//         setSelectedValue(newValue);
+
+//         try {
+//             const response = await fetch("/api/user/funeral-card", {
+//                 method: "PUT",
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//                 body: JSON.stringify({
+//                     funeral_id: 123, // <- ID pogrzebu, dostosuj dynamicznie
+//                     flower_notes: newValue, // <- Nowa wartość z select
+//                 }),
+//             });
+
+//             const data = await response.json();
+//             if (!response.ok) {
+//                 throw new Error(data.error || "Błąd aktualizacji");
+//             }
+
+//             console.log("✅ Dane zostały zaktualizowane!");
+//         } catch (error) {
+//             console.error("❌ Błąd:", error);
+//         }
+//     };
+
+//     return (
+//         <select value={selectedValue} onChange={handleChange}>
+//             <option value="Brak kwiatów">Brak kwiatów</option>
+//             <option value="Róże">Róże</option>
+//             <option value="Lilije">Lilije</option>
+//             <option value="Wiązanka">Wiązanka</option>
+//         </select>
+//     );
+// };
+
+// export default FuneralCardSelect;

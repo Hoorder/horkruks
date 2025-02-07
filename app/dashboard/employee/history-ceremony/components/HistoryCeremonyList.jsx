@@ -155,9 +155,9 @@ export function HistoryCeremonyList() {
                                                 "-----"}
                                         </td>
                                         <td>
-                                            {task.working_hours_place === 0
+                                            {task.working_hours_number === 0
                                                 ? "-----"
-                                                : task.working_hours_place}
+                                                : task.working_hours_number}
                                         </td>
                                         <td>{task.task_date}</td>
                                         <td>

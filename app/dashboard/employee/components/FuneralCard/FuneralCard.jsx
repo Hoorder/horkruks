@@ -6,8 +6,10 @@ import styles from "./FuneralCard.module.css";
 export function FuneralCard() {
     const [errorMsg, setErrorMsg] = useState(false);
     const [funeralCardData, setFuneralCardData] = useState([]);
+    const [isSelected, setIsSelected] = useState(false);
 
     useEffect(() => {
+        setIsSelected(false);
         const fetchFuneralCard = async () => {
             try {
                 const response = await fetch("/api/user/funeral-card");
@@ -30,7 +32,35 @@ export function FuneralCard() {
         };
 
         fetchFuneralCard();
-    }, []);
+    }, [isSelected]);
+
+    const updateFuneralCard = async (funeral_card_id, confirmation) => {
+        try {
+            const response = await fetch("/api/user/funeral-card", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    funeral_card_id,
+                    confirmation,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Błąd aktualizacji danych");
+            }
+
+            setIsSelected(true);
+
+            // alert("Dane pogrzebu zostały zaktualizowane!");
+            //TODO: Dodac obsluge
+        } catch (error) {
+            console.error("Błąd podczas aktualizacji:", error);
+        }
+    };
 
     return (
         <>
@@ -52,7 +82,19 @@ export function FuneralCard() {
                                 className={styles.container}
                                 key={funeralCard.id_funeral_cards}
                             >
-                                <div className={styles.topBar}>
+                                <div
+                                    className={styles.topBar}
+                                    style={{
+                                        backgroundColor:
+                                            funeralCard.confirmation === 0
+                                                ? "#171717"
+                                                : funeralCard.confirmation === 1
+                                                ? "#33660e"
+                                                : funeralCard.confirmation === 2
+                                                ? "#b41010"
+                                                : "gray",
+                                    }}
+                                >
                                     <div className={styles.leftColumn}>
                                         <p className={styles.localityName}>
                                             {funeralCard.locality}
@@ -60,6 +102,39 @@ export function FuneralCard() {
                                         <p className={styles.localityDate}>
                                             {funeralCard.funeral_date}
                                         </p>
+                                    </div>
+
+                                    <div className={styles.rightColumn}>
+                                        <button
+                                            className={styles.acceptBtn}
+                                            onClick={() =>
+                                                updateFuneralCard(
+                                                    funeralCard.id_funeral_cards,
+                                                    1
+                                                )
+                                            }
+                                        >
+                                            {funeralCard.confirmation === 1 ? (
+                                                <p>Potwierdzono</p>
+                                            ) : (
+                                                <p>Potwierdź</p>
+                                            )}
+                                        </button>
+                                        <button
+                                            className={styles.rejectBtn}
+                                            onClick={() =>
+                                                updateFuneralCard(
+                                                    funeralCard.id_funeral_cards,
+                                                    2
+                                                )
+                                            }
+                                        >
+                                            {funeralCard.confirmation === 2 ? (
+                                                <p>Odrzucono</p>
+                                            ) : (
+                                                <p>Odrzuć</p>
+                                            )}
+                                        </button>
                                     </div>
                                 </div>
                                 <div className={styles.middleBar}>

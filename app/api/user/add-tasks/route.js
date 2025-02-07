@@ -16,7 +16,7 @@ export async function POST(req) {
             funeral_ceremony_place,
             funeral_transport_place,
             body_preparation_place,
-            working_hours_place,
+            working_hours_number,
             funeral_ceremony_payout,
             funeral_transport_payout,
             body_preparation_payout,
@@ -24,7 +24,7 @@ export async function POST(req) {
         } = body;
 
         // Walidacja danych
-        if (working_hours_place < 0 || working_hours_place > 10) {
+        if (working_hours_number < 0 || working_hours_number > 10) {
             return jsonResponse(
                 { error: "Liczba godzin musi być od 1 do 10." },
                 401
@@ -35,7 +35,7 @@ export async function POST(req) {
             !funeral_ceremony_place &&
             !funeral_transport_place &&
             !body_preparation_place &&
-            working_hours_place === 0
+            working_hours_number === 0
         ) {
             return jsonResponse({ error: "Uzupełnij pola danymi." }, 401);
         }
@@ -44,7 +44,7 @@ export async function POST(req) {
         await db.query(
             `INSERT INTO funeral_tasks 
             (id_users_fk, task_date, funeral_ceremony_place, funeral_transport_place, 
-            body_preparation_place, working_hours_place, funeral_ceremony_payout, 
+            body_preparation_place, working_hours_number, funeral_ceremony_payout, 
             funeral_transport_payout, body_preparation_payout, working_hours_payout) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
@@ -53,7 +53,7 @@ export async function POST(req) {
                 funeral_ceremony_place,
                 funeral_transport_place,
                 body_preparation_place,
-                working_hours_place,
+                working_hours_number,
                 funeral_ceremony_payout,
                 funeral_transport_payout,
                 body_preparation_payout,

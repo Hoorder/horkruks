@@ -48,7 +48,7 @@ export function AddOrderForm() {
             funeral_ceremony_place: funeralLocality,
             funeral_transport_place: transportLocality,
             body_preparation_place: bodyPrepareLocality,
-            working_hours_place: workHoursNumber,
+            working_hours_number: workHoursNumber,
             funeral_ceremony_payout:
                 funeralLocality.trim() === "" ? 0 : userData.funeral_fee,
             funeral_transport_payout:
