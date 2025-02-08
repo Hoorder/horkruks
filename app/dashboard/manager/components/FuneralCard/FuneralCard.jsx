@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./FuneralCard.module.css";
 import Image from "next/image";
+import { Modal } from "../Modal/Modal";
 
 export function FuneralCard() {
     const [errorMsg, setErrorMsg] = useState(false);
@@ -57,181 +58,44 @@ export function FuneralCard() {
             }
 
             setIsSelected(true);
-
-            // alert("Dane pogrzebu zostały zaktualizowane!");
-            //TODO: Dodac obsluge
         } catch (error) {
             console.error("Błąd podczas aktualizacji:", error);
         }
     };
 
-    const showFuneralDetails = (funeral_card_id) => {
+    const showFuneralDetails = async (funeral_card_id) => {
         setIsDetailsShown((prev) => !prev);
         setSelectedId(funeral_card_id);
+
+        try {
+            const response = await fetch("/api/manager/funeral-card/list", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    funeral_card_id,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Błąd podczas aktualizacji");
+            }
+        } catch (error) {
+            throw new Error("Sprawdź end-point");
+        }
     };
 
     return (
         <>
             {isDetailsShown && selectedId !== null && (
-                <div
-                    className={styles.detailsWrapper}
-                    onClick={() => {
-                        setIsDetailsShown(false);
-                        setSelectedId(null);
-                    }}
-                >
-                    {funeralCardData
-                        .filter(
-                            (funeralCard) =>
-                                funeralCard.id_funeral_cards === selectedId
-                        )
-                        .map((funeralCard) => (
-                            <div
-                                key={funeralCard.id_funeral_cards}
-                                className={styles.detailsContainer}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <div className={styles.detailHeader}>
-                                    <div className={styles.leftColumn}>
-                                        <p className={styles.localityName}>
-                                            {funeralCard.locality}
-                                        </p>
-                                        <p className={styles.localityDate}>
-                                            {funeralCard.funeral_date}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={styles.detailBody}>
-                                    <div className={styles.detailCard}>
-                                        <div
-                                            className={`${styles.sectionTitle} ${styles.detailTitle}`}
-                                        >
-                                            <p>Podstawowe informacjie:</p>
-                                            <div className="bar"></div>
-                                        </div>
-                                        <p>
-                                            Zbiórka:{" "}
-                                            <span>
-                                                {funeralCard.meeting_time}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Wniesienie:{" "}
-                                            <span>
-                                                {funeralCard.entrance_time}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Msza Św.:{" "}
-                                            <span>
-                                                {funeralCard.funeral_time}
-                                            </span>
-                                        </p>
-                                    </div>
-
-                                    <div className={styles.detailCard}>
-                                        <div
-                                            className={`${styles.sectionTitle} ${styles.detailTitle}`}
-                                        >
-                                            <p>Dodatkowe informacjie:</p>
-                                            <div className="bar"></div>
-                                        </div>
-                                        <p>
-                                            Oprawa muzyczna:{" "}
-                                            <span>
-                                                {funeralCard.musical_arrangement ===
-                                                1
-                                                    ? "Tak"
-                                                    : "Nie"}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Notatki do oprawy:{" "}
-                                            <span>
-                                                {funeralCard.musical_notest}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Namiot:{" "}
-                                            <span>
-                                                {funeralCard.tent === 1
-                                                    ? "Tak"
-                                                    : "Nie"}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Krzyż:{" "}
-                                            <span>
-                                                {funeralCard.funeral_cross === 1
-                                                    ? "Tak"
-                                                    : "Nie"}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Wieńce:{" "}
-                                            <span>
-                                                {funeralCard.flowers === 1
-                                                    ? "Tak"
-                                                    : "Nie"}{" "}
-                                                {funeralCard.flower_notes}
-                                            </span>
-                                        </p>
-                                    </div>
-
-                                    <div className={styles.detailCard}>
-                                        <div
-                                            className={`${styles.sectionTitle} ${styles.detailTitle}`}
-                                        >
-                                            <p>Obsługa:</p>
-                                            <div className="bar"></div>
-                                        </div>
-                                        <p>
-                                            Żałobnik 1:{" "}
-                                            <span>
-                                                {funeralCard.mourner_one}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Żałobnik 2:{" "}
-                                            <span>
-                                                {funeralCard.mourner_two}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Żałobnik 3:{" "}
-                                            <span>
-                                                {funeralCard.mourner_three}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Żałobnik 4:{" "}
-                                            <span>
-                                                {funeralCard.mourner_four}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Żałobnik 5:{" "}
-                                            <span>
-                                                {funeralCard.mourner_five}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Żałobnik 6:{" "}
-                                            <span>
-                                                {funeralCard.mourner_six}
-                                            </span>
-                                        </p>
-                                        <p>
-                                            Żałobnik 7:{" "}
-                                            <span>
-                                                {funeralCard.mourner_seven}
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                </div>
+                <Modal
+                    selectedId={selectedId}
+                    funeralCardData={funeralCardData}
+                    setSelectedId={setSelectedId}
+                    setIsDetailsShown={setIsDetailsShown}
+                />
             )}
 
             {errorMsg ? (

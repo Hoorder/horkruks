@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./LastTasks.module.css";
 import Image from "next/image";
 
-export function LastTasks() {
+export function LastTasks({ isClicked }) {
     const [funeralTasks, setFuneralTasks] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -33,7 +33,7 @@ export function LastTasks() {
         };
 
         fetchLastTasks();
-    }, []);
+    }, [isClicked]);
 
     const handleDelete = async (taskId) => {
         const confirmDelete = window.confirm(

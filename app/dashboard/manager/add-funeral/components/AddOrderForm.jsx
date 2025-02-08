@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./AddOrderForm.module.css";
 import { Input } from "@/app/dashboard/components/Input/Input";
 
-export function AddOrderForm() {
+export function AddOrderForm({ setIsClicked }) {
     const [tasksData, setTasksData] = useState("");
     const [funeralLocality, setFuneralLocality] = useState("");
     const [transportLocality, setTransportLocality] = useState("");
@@ -41,6 +41,7 @@ export function AddOrderForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsClicked((prev) => !prev);
 
         const dataToSend = {
             id_users_fk: userData.user_id,

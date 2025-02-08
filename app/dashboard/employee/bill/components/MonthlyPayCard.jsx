@@ -83,7 +83,7 @@ export function MonthlyPayCard() {
                         </div>
                         <div className={styles.feeForCard}>
                             <p>Godziny robocze</p>
-                            <p>{data.number_of_work_hours} szt.</p>
+                            <p>{data.number_of_work_hours} h</p>
                             <p>{data.total_working_hours_payout} zł.</p>
                         </div>
                     </div>
