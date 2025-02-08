@@ -1,0 +1,76 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000bf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.container {
+    /* height: 500px; */
+    width: 300px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: var(--border-radius);
+    border: 3px solid var(--black);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: center;
+
+    background-color: var(--black);
+    border-radius: 3px;
+    color: var(--white);
+
+    padding: 15px;
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset;
+}
+
+.header p:first-of-type {
+    font-size: var(--xlarge-fs);
+    font-weight: var(--semiBold);
+}
+
+.header p:last-of-type {
+    font-weight: var(--extraLight);
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 750px) {
+    .body {
+        height: 300px;
+        overflow-y: scroll;
+    }
+}
+
+.funeralDetails {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    padding: 10px;
+    border-bottom: 1px solid #666;
+}
+
+.funeralDetails p {
+    font-size: var(--base-fs);
+    font-weight: var(--medium);
+}
+
+.funeralDetails p span {
+    font-weight: var(--light);
+}

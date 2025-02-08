@@ -1,0 +1,82 @@
+.container {
+    padding: 15px 25px;
+}
+
+.dataFilterButtonContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+
+    padding: 5px;
+    margin-bottom: 15px;
+
+    max-width: fit-content;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: #f8f8f8;
+}
+
+.dataFilterButtonContainer button {
+    font-family: var(--font-geist-sans);
+    cursor: pointer;
+    color: var(--label-font-color);
+    letter-spacing: 0.2px;
+
+    padding: 6px 11px;
+    background-color: inherit;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-radius);
+}
+
+.activeBtn {
+    color: var(--black) !important;
+    font-weight: var(--medium) !important;
+
+    background-color: var(--white) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.tableContainer {
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.table {
+    padding: 25px;
+    border-collapse: collapse;
+}
+
+.table thead {
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.table thead tr th {
+    font-weight: var(--medium);
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.table tbody {
+    text-align: center;
+}
+
+.table tbody tr {
+    border: 1px solid var(--border-color);
+}
+
+.table tbody tr td {
+    padding: 10px 0;
+    white-space: nowrap;
+}
+
+.table tbody tr td:last-of-type {
+    padding: 10px 20px;
+}
+
+.deleteBtn {
+    cursor: pointer;
+}

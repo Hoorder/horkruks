@@ -29,7 +29,7 @@ SELECT
     SUM(funeral_ceremony_payout > 0) AS number_of_funerals,
     SUM(funeral_transport_payout > 0) AS number_of_transports,
     SUM(body_preparation_payout > 0) AS number_of_body_prep,
-    SUM(working_hours_place) AS number_of_work_hours,
+    SUM(working_hours_number) AS number_of_work_hours,
     FORMAT(SUM(funeral_ceremony_payout + funeral_transport_payout + body_preparation_payout + working_hours_payout), 2, 'pl_PL') AS total,
     FORMAT(SUM(funeral_ceremony_payout), 2, 'pl_PL') AS total_funeral_ceremony_payout,
     FORMAT(SUM(funeral_transport_payout), 2, 'pl_PL') AS total_funeral_transport_payout,

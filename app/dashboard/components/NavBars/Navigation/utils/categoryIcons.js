@@ -15,4 +15,5 @@ export const categoryIcons = {
     Rozliczenie: "/file-text.svg",
     Faktury: "/file-text.svg",
     Ustawienia: "/vector.svg",
+    Przewozy: "/briefcase.svg",
 };

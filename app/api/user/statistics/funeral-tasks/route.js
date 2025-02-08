@@ -29,7 +29,7 @@ export async function GET() {
             funeral_ceremony_place,
             funeral_transport_place,
             body_preparation_place,
-            working_hours_place,
+            working_hours_number,
             DATE_FORMAT(task_date, '%Y-%m-%d') AS task_date
         FROM funeral_tasks
         WHERE id_users_fk = ?

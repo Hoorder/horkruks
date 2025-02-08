@@ -1,0 +1,122 @@
+.sectionTitle {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.sectionTitle p {
+    font-size: var(--base-fs);
+    font-weight: var(--regular);
+}
+
+.sectionTitle div {
+    height: 2px;
+    width: 90px;
+    margin: 5px 0;
+    background-color: var(--black);
+}
+
+.container {
+    width: 490px;
+    border-right: 1px solid var(--border-color);
+}
+
+@media (max-width: 1587) {
+    .container {
+        flex-grow: 1;
+    }
+}
+
+.head {
+    color: var(--white);
+    background-color: var(--black);
+    border-top-left-radius: var(--border-radius);
+    padding: 22px 30px;
+}
+
+@media (max-width: 450px) {
+    .head {
+        border-top-left-radius: 0px;
+    }
+}
+
+.head p:first-of-type {
+    font-size: var(--xlarge-fs);
+    font-weight: var(--semiBold);
+}
+
+.head p:last-of-type {
+    font-weight: var(--extraLight);
+    line-height: 1.5;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.segment {
+    width: 100%;
+    padding: 5px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btnContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 420px) {
+    .segment {
+        padding: 0 30px;
+    }
+}
+
+.inputContainers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.button {
+    cursor: pointer;
+    font-size: var(--base-fs);
+    font-weight: var(--regular);
+    font-family: var(--font-geist-sans);
+    color: var(--white);
+    padding: 9px 40px;
+    margin: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--button-color);
+    transition: 0.2s;
+}
+
+.button:active {
+    background-color: var(--green) !important;
+}
+
+.buttonConfirm {
+    background-color: var(--green);
+}
+
+.errorMsg {
+    display: block;
+    text-align: center;
+    margin: 20px 10px;
+}
+
+.succesMsg {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    color: var(--green);
+    font-weight: var(--semiBold);
+}

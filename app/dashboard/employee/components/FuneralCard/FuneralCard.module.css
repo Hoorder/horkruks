@@ -57,6 +57,34 @@
     flex-direction: column;
 }
 
+.rightColumn {
+    gap: 5px;
+}
+
+.acceptBtn,
+.rejectBtn {
+    width: 110px;
+    cursor: pointer;
+    font-size: var(--small-fs);
+    font-weight: var(--light);
+    font-family: var(--font-geist-sans);
+    color: var(--black);
+    background-color: var(--white);
+    padding: 2.5px 10px;
+    border-radius: var(--border-radius);
+    border: unset;
+}
+
+.acceptBtn:hover {
+    color: var(--white);
+    background-color: var(--black) !important;
+}
+
+.rejectBtn:hover {
+    color: var(--white);
+    background-color: var(--black) !important;
+}
+
 .localityName {
     font-size: var(--large-fs);
     text-transform: uppercase;
