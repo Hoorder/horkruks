@@ -60,6 +60,7 @@ LEFT JOIN users m5 ON f.mourner_five_id_fk = m5.id_users
 LEFT JOIN users m6 ON f.mourner_six_id_fk = m6.id_users
 LEFT JOIN users m7 ON f.mourner_seven_id_fk = m7.id_users
 WHERE CONCAT( team_manager_id_fk ) LIKE '%?%'
+AND order_confirmed_at IS NULL
 AND f.funeral_date >= CURDATE()
 AND f.order_completed_at IS NULL;
 

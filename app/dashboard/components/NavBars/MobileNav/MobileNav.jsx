@@ -57,18 +57,34 @@ export function MobileNav({ setIsMenuShown }) {
                         />
                         <p>Zlecenie</p>
                     </Link>
-                    <Link
-                        href={`${path}/history-ceremony`}
-                        className={styles.option}
-                    >
-                        <Image
-                            src={"/book-open.svg"}
-                            width={20}
-                            height={20}
-                            alt="HistoryCeremony"
-                        />
-                        <p>Historia</p>
-                    </Link>
+                    {role === "employee" ? (
+                        <Link
+                            href={`${path}/history-ceremony`}
+                            className={styles.option}
+                        >
+                            <Image
+                                src={"/book-open.svg"}
+                                width={20}
+                                height={20}
+                                alt="HistoryCeremony"
+                            />
+                            <p>Historia</p>
+                        </Link>
+                    ) : (
+                        <Link
+                            href={`${path}/order-transport`}
+                            className={styles.option}
+                        >
+                            <Image
+                                src={"/briefcase.svg"}
+                                width={20}
+                                height={20}
+                                alt="HistoryCeremony"
+                            />
+                            <p>Przewozy</p>
+                        </Link>
+                    )}
+
                     <Link href={`${path}/settings`} className={styles.option}>
                         <Image
                             src={"/user-settings.svg"}

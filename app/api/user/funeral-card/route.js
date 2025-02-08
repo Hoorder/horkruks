@@ -48,6 +48,7 @@ WHERE CONCAT(
         mourner_four_id_fk, mourner_five_id_fk, mourner_six_id_fk, 
         mourner_seven_id_fk
     ) LIKE '%?%'
+     AND order_confirmed_at IS NULL
 AND f.funeral_date >= CURDATE()
 AND f.order_completed_at IS NULL;
         `;
@@ -113,4 +114,3 @@ export async function PUT(request) {
         return jsonResponse({ error: "Błąd podczas aktualizacji danych" }, 500);
     }
 }
-
