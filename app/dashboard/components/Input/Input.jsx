@@ -12,6 +12,8 @@ export function Input({
     label,
     width = "175px",
     fontWeight = "300",
+    min = 0,
+    max = 10,
 }) {
     return (
         <>
@@ -33,8 +35,8 @@ export function Input({
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
-                    min={0}
-                    max={10}
+                    min={min}
+                    max={max}
                     disabled={disabled}
                 />
             </div>

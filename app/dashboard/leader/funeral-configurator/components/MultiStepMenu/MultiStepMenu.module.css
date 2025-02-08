@@ -1,0 +1,79 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+
+    max-width: 300px;
+    min-width: 300px;
+    height: 800px;
+    background: linear-gradient(
+        180deg,
+        rgba(163, 202, 212, 0.2) 0%,
+        rgba(237, 237, 237, 0.2) 100%
+    );
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 0px 25px;
+}
+
+.sectionDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sectionDescription p:first-of-type {
+    font-size: var(--xlarge-fs);
+    font-weight: var(--semiBold);
+}
+
+.sectionDescription p:last-of-type {
+    color: var(--label-font-color);
+    font-size: var(--base-fs);
+    font-weight: var(--regular);
+}
+
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.step {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    font-size: var(--base-fs);
+    font-weight: var(--light);
+
+    width: 100%;
+    padding: 10px;
+
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.progressCircle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--black);
+    margin-right: 20px;
+    background-color: var(--white);
+}
+
+.stepActive {
+    font-weight: var(--regular);
+    color: var(--white);
+    background-color: #323030;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.051);
+}
