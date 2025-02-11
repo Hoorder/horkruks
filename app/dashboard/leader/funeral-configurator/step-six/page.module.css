@@ -6,7 +6,7 @@
     position: relative;
     font-size: var(--base-fs);
     font-weight: var(--medium);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .stepName::after {
@@ -25,12 +25,11 @@
     flex-wrap: wrap;
     gap: 15px;
     max-width: 560px;
-    margin-bottom: 5px;
 }
 
 .inputContainer p {
     margin-top: 10px;
-    font-weight: var(--medium);
+    font-size: var(--small-fs);
 }
 
 .options {

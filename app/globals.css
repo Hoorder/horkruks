@@ -27,18 +27,15 @@
     --regular: 400;
     --medium: 500;
     --semiBold: 600;
-
-    /* 
-    ExtraLight 200
-    Light 300
-    Regular 400
-    Medium 500
-    SemiBold 600
-    Bold 700
-    ExtraBold 800
-    Black 900
-    */
 }
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --white: #313338;
+        --black: #ffffff;
+        --background-mute: #000000;
+    }
+} */
 
 html,
 body {
@@ -48,7 +45,7 @@ body {
 }
 
 body {
-    color: var(--font-color);
+    color: var(--black);
     background: var(--white);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
     font-weight: 300;

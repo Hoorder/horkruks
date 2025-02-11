@@ -17,7 +17,7 @@ export function MultiStepMenu() {
         { id: 6, path: `${pathLink}/step-six`, title: "Pozostałe" },
         { id: 7, path: `${pathLink}/step-seven`, title: "Kosztorys" },
         { id: 8, path: `${pathLink}/step-eight`, title: "Faktura" },
-        { id: 9, path: `${pathLink}/step-nine`, title: "Podsumowanie" },
+        { id: 9, path: `${pathLink}/summary`, title: "Podsumowanie" },
     ];
 
     return (

@@ -1,15 +1,43 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "../../../components/Button/Button";
-import { Input } from "../../../components/Input/Input";
 import styles from "./page.module.css";
 import Image from "next/image";
+import { useFormContext } from "../context/FormContext";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function StepFour() {
+    const { state, dispatch } = useFormContext();
+    const router = useRouter();
+
+    const [burialInAnUrn, setBurialInAnUrn] = useState(state.burialInAnUrn);
+    const [burialInACoffin, setBurialInACoffin] = useState(
+        state.burialInACoffin
+    );
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch({
+            type: "SET_FIELD",
+            field: "burialInAnUrn",
+            value: burialInAnUrn,
+        });
+
+        dispatch({
+            type: "SET_FIELD",
+            field: "burialInACoffin",
+            value: burialInACoffin,
+        });
+
+        dispatch({ type: "NEXT_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-five");
+    };
+
     return (
         <>
-            <div className={styles.container}>
+            <form className={styles.container} onSubmit={onSubmit}>
                 <div className={styles.stepName}>
                     <p>Rodzaj pochówku</p>
                 </div>
@@ -20,19 +48,29 @@ export default function StepFour() {
                             <div>
                                 <input
                                     type="radio"
-                                    id="cofin"
-                                    name="safecare"
-                                    value="1"
+                                    id="coffin"
+                                    name="burialType"
+                                    value="coffin"
+                                    checked={burialInACoffin === "1"}
+                                    onChange={() => {
+                                        setBurialInACoffin("1");
+                                        setBurialInAnUrn("0");
+                                    }}
                                 />
-                                <label htmlFor="cofin">Trumna</label>
+                                <label htmlFor="coffin">Trumna</label>
                             </div>
 
                             <div>
                                 <input
                                     type="radio"
                                     id="urn"
-                                    name="safecare"
-                                    value="1"
+                                    name="burialType"
+                                    value="urn"
+                                    checked={burialInAnUrn === "1"}
+                                    onChange={() => {
+                                        setBurialInAnUrn("1");
+                                        setBurialInACoffin("0");
+                                    }}
                                 />
                                 <label htmlFor="urn">Urna</label>
                             </div>
@@ -47,108 +85,12 @@ export default function StepFour() {
                         height={100}
                         alt="coffin-type-1"
                     />
-                    <Image
-                        src={"/coffins/2.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/3.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/4.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/5.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/6.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/7.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/8.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/9.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/10.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/11.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/12.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/13.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/14.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/15.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                    <Image
-                        src={"/coffins/16.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
                 </div>
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
-                    <Link
-                        href={
-                            "/dashboard/leader/funeral-configurator/step-five"
-                        }
-                    >
-                        <Button>Dalej</Button>
-                    </Link>
+                    <Button type="submit">Dalej</Button>
                 </div>
-            </div>
+            </form>
         </>
     );
 }

@@ -2,6 +2,10 @@
     width: fit-content;
 }
 
+.inputContainer div {
+    margin-bottom: 5px;
+}
+
 .stepName {
     position: relative;
     font-size: var(--base-fs);
@@ -61,4 +65,36 @@
 
 .button {
     margin-top: 50px;
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.selectContainer select {
+    width: 175px;
+    height: 35px;
+
+    font-family: var(--font-geist-sans);
+    font-size: var(--base-fs);
+    font-weight: var(--medium);
+    border-radius: var(--border-radius);
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    padding-left: 10px;
+}
+
+.select {
+    width: 175px;
+    height: 35px;
+
+    font-family: var(--font-geist-sans);
+    font-size: var(--base-fs);
+    font-weight: var(--medium);
+    border-radius: var(--border-radius);
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    padding-left: 10px;
 }

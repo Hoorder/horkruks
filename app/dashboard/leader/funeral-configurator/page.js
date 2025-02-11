@@ -1,14 +1,85 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import styles from "./page.module.css";
+import { useState } from "react";
+import { useFormContext } from "./context/FormContext";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+    const { state, dispatch } = useFormContext();
+    const router = useRouter();
+
+    const [deceasedName, setDeceasedName] = useState(state.deceasedName);
+    const [deceasedSurname, setDeceasedSurname] = useState(
+        state.deceasedSurname
+    );
+    const [deceasedPesel, setDeceasedPesel] = useState(state.deceasedPesel);
+    const [deceasedBirthDate, setDeceasedBirthDate] = useState(
+        state.deceasedBirthDate
+    );
+    const [deceasedDeathDate, setDeceasedDeathDate] = useState(
+        state.deceasedDeathDate
+    );
+    const [noInsurance, setNoInsurance] = useState(state.noInsurance || "");
+    const [insuranceAtZUS, setInsuranceAtZUS] = useState(
+        state.insuranceAtZUS || ""
+    );
+    const [insuranceAtKRUS, setInsuranceAtKRUS] = useState(
+        state.insuranceAtKRUS || ""
+    );
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch({
+            type: "SET_FIELD",
+            field: "deceasedName",
+            value: deceasedName,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "deceasedSurname",
+            value: deceasedSurname,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "deceasedPesel",
+            value: deceasedPesel,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "deceasedBirthDate",
+            value: deceasedBirthDate,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "deceasedDeathDate",
+            value: deceasedDeathDate,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "noInsurance",
+            value: noInsurance,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "insuranceAtZUS",
+            value: insuranceAtZUS,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "insuranceAtKRUS",
+            value: insuranceAtKRUS,
+        });
+
+        dispatch({ type: "NEXT_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-two");
+    };
     return (
         <>
-            <div className={styles.container}>
+            <form className={styles.container} onSubmit={onSubmit}>
                 <div className={styles.stepName}>
                     <p>Dane osoby zmarłej</p>
                 </div>
@@ -18,26 +89,36 @@ export default function Home() {
                         label={"Imię / Imiona"}
                         nameAndId={"name-death-person"}
                         placeholder={"Np. Konrad"}
+                        value={deceasedName}
+                        onChange={(e) => setDeceasedName(e.target.value)}
                     />
                     <Input
                         label={"Nazwisko"}
                         nameAndId={"surname-death-person"}
                         placeholder={"Np. Zdziarski"}
+                        value={deceasedSurname}
+                        onChange={(e) => setDeceasedSurname(e.target.value)}
                     />
                     <Input
                         label={"Pesel"}
                         nameAndId={"pesel-death-person"}
                         placeholder={"Np. 04928394032"}
+                        value={deceasedPesel}
+                        onChange={(e) => setDeceasedPesel(e.target.value)}
                     />
                     <Input
                         label={"Data urodzenia"}
                         type="date"
                         nameAndId={"start-date-death-person"}
+                        value={deceasedBirthDate}
+                        onChange={(e) => setDeceasedBirthDate(e.target.value)}
                     />
                     <Input
                         label={"Data śmierci"}
                         type="date"
                         nameAndId={"end-date-death-person"}
+                        value={deceasedDeathDate}
+                        onChange={(e) => setDeceasedDeathDate(e.target.value)}
                     />
                 </div>
 
@@ -50,7 +131,13 @@ export default function Home() {
                                     type="radio"
                                     id="no"
                                     name="safecare"
-                                    value="1"
+                                    value="0"
+                                    checked={noInsurance === "1"}
+                                    onChange={() => {
+                                        setNoInsurance("1");
+                                        setInsuranceAtZUS("0");
+                                        setInsuranceAtKRUS("0");
+                                    }}
                                 />
                                 <label htmlFor="no">NIE</label>
                             </div>
@@ -61,6 +148,12 @@ export default function Home() {
                                     id="zus"
                                     name="safecare"
                                     value="1"
+                                    checked={insuranceAtZUS === "1"}
+                                    onChange={() => {
+                                        setInsuranceAtZUS("1");
+                                        setNoInsurance("0");
+                                        setInsuranceAtKRUS("0");
+                                    }}
                                 />
                                 <label htmlFor="zus">ZUS</label>
                             </div>
@@ -70,7 +163,13 @@ export default function Home() {
                                     type="radio"
                                     id="krs"
                                     name="safecare"
-                                    value="1"
+                                    value="2"
+                                    checked={insuranceAtKRUS === "1"}
+                                    onChange={() => {
+                                        setInsuranceAtKRUS("1");
+                                        setNoInsurance("0");
+                                        setInsuranceAtZUS("0");
+                                    }}
                                 />
                                 <label htmlFor="krs">KRUS</label>
                             </div>
@@ -79,13 +178,9 @@ export default function Home() {
                 </div>
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
-                    <Link
-                        href={"/dashboard/leader/funeral-configurator/step-two"}
-                    >
-                        <Button>Dalej</Button>
-                    </Link>
+                    <Button type="submit">Dalej</Button>
                 </div>
-            </div>
+            </form>
         </>
     );
 }
