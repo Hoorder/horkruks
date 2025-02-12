@@ -68,6 +68,8 @@ const initialState = {
     funeralBenefit: 4000,
     totalAmount: 0,
 
+    invoiceName: "",
+
     step: 1,
 };
 

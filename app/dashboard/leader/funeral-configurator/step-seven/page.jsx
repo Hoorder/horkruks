@@ -38,7 +38,8 @@ export default function StepSeven() {
     const [totalCeremonyCost, setTotalCeremonyCost] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
 
-    // Funkcja do aktualizacji podsumowania
+    const [invoiceName, setInvoiceName] = useState("");
+
     const updateSummary = () => {
         const summary =
             Number(coffinPrice) +
@@ -54,7 +55,6 @@ export default function StepSeven() {
         setTotalAmount(summary - (insurance === 1 ? 4000 : 0));
     };
 
-    // Wywołaj updateSummary przy każdej zmianie wartości
     useEffect(() => {
         updateSummary();
     }, [
@@ -69,10 +69,47 @@ export default function StepSeven() {
         insurance,
     ]);
 
-    const onSubmit = (e) => {
+    const generateInvoice = async () => {
+        try {
+            const response = await fetch("/api/generate-invoice", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    totalAmount,
+                    coffinPrice,
+                    urnPrice,
+                    funeralService,
+                    bodyTransportPrice,
+                    bodyPreparyPrice,
+                    crossPrice,
+                    musicalarrangementPrice,
+                    flowersPrice,
+                    insurance,
+                }),
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                console.log("Faktura wygenerowana:", data.invoiceName);
+                setInvoiceName(data.invoiceName);
+                dispatch({
+                    type: "SET_FIELD",
+                    field: "invoiceName",
+                    value: data.invoiceName,
+                });
+            } else {
+                console.error("Błąd generowania faktury:", data.error);
+            }
+        } catch (error) {
+            console.error("Błąd serwera:", error);
+        }
+    };
+
+    const onSubmit = async (e) => {
         e.preventDefault();
 
-        // Zapisz wartości w stanie
+        await generateInvoice();
+
         dispatch({
             type: "SET_FIELD",
             field: "coffinPrice",
@@ -124,7 +161,6 @@ export default function StepSeven() {
             value: totalAmount,
         });
 
-        // Przejdź do następnego kroku
         dispatch({ type: "NEXT_STEP" });
         router.push("/dashboard/leader/funeral-configurator/summary");
     };

@@ -165,6 +165,7 @@ export default function Summary() {
                 <strong>Transport:</strong> {state.bodyPreparyPrice}
                 <strong>Transport:</strong> {state.musicalarrangementPrice}
                 <strong>Transport:</strong> {state.flowersPrice}
+                <strong>Transport:</strong> {state.invoiceName}
             </p>
             <button
                 onClick={() =>
