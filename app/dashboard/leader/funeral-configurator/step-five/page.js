@@ -6,12 +6,13 @@ import { useFormContext } from "../context/FormContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Input } from "@/app/dashboard/components/Input/Input";
+import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepFive() {
     const { state, dispatch } = useFormContext();
     const router = useRouter();
 
-    const [chooseTeam, setChooseTeam] = useState(false);
+    const [chooseTeam, setChooseTeam] = useState(true);
     const [createTeam, setCreateTeam] = useState(false);
 
     const [manager, setManager] = useState(state.manager);
@@ -76,6 +77,11 @@ export default function StepFive() {
 
         dispatch({ type: "NEXT_STEP" });
         router.push("/dashboard/leader/funeral-configurator/step-six");
+    };
+
+    const handleBack = () => {
+        dispatch({ type: "PREV_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-four");
     };
 
     useEffect(() => {
@@ -151,6 +157,8 @@ export default function StepFive() {
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"5"} stepTitle={"Obsługa"} />
+
                 <div className={styles.stepName}>
                     <p>Dobierz zespół ceremonialny</p>
                 </div>
@@ -463,6 +471,14 @@ export default function StepFive() {
                 )}
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
+                    <Button
+                        type="button"
+                        onClick={handleBack}
+                        background="transparent"
+                        color="black"
+                    >
+                        Wstecz
+                    </Button>
                     <Button type="submit">Dalej</Button>
                 </div>
             </form>

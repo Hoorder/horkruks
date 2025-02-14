@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import { useFormContext } from "../context/FormContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepTwo() {
     const { state, dispatch } = useFormContext();
@@ -29,8 +30,21 @@ export default function StepTwo() {
         state.orderingLocality
     );
 
+    const [errorMessage, setErrorMessage] = useState("");
+
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (
+            (!orderingName,
+            !orderingSurname,
+            !orderingPhoneNumber,
+            !orderingCity,
+            !orderingHouseNumber,
+            !orderingPostCode,
+            !orderingLocality)
+        )
+            return setErrorMessage("Dane nie zostały wprowadzone");
 
         dispatch({
             type: "SET_FIELD",
@@ -72,9 +86,16 @@ export default function StepTwo() {
         router.push("/dashboard/leader/funeral-configurator/step-three");
     };
 
+    const handleBack = () => {
+        dispatch({ type: "PREV_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/");
+    };
+
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"2"} stepTitle={"Zleceniodawca"} />
+
                 <div className={styles.stepName}>
                     <p>Dane zleceniodawcy</p>
                 </div>
@@ -105,7 +126,7 @@ export default function StepTwo() {
 
                 <div className={styles.inputContainer}>
                     <Input
-                        label={"Miasto"}
+                        label={"Ulica"}
                         nameAndId={"city-ordering-person"}
                         placeholder={"Np. Zdziarski"}
                         value={orderingCity}
@@ -138,8 +159,26 @@ export default function StepTwo() {
                 </div>
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
+                    <Button
+                        type="button"
+                        onClick={handleBack}
+                        background="transparent"
+                        color="black"
+                    >
+                        Wstecz
+                    </Button>
                     <Button type="submit">Dalej</Button>
                 </div>
+                <p
+                    style={{
+                        color: "red",
+                        fontWeight: "var(--medium)",
+                        fontSize: "14px",
+                        marginTop: "10px",
+                    }}
+                >
+                    {errorMessage}
+                </p>
             </form>
         </>
     );

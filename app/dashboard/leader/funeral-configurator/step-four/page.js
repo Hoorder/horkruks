@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useFormContext } from "../context/FormContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepFour() {
     const { state, dispatch } = useFormContext();
@@ -35,9 +36,25 @@ export default function StepFour() {
         router.push("/dashboard/leader/funeral-configurator/step-five");
     };
 
+    const handleBack = () => {
+        dispatch({ type: "PREV_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-three");
+    };
+    const [zoomedImage, setZoomedImage] = useState(null);
+
+    const handleZoom = (src) => {
+        setZoomedImage(src);
+    };
+
+    const closeZoom = () => {
+        setZoomedImage(null);
+    };
+
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"4"} stepTitle={"Pochówek"} />
+
                 <div className={styles.stepName}>
                     <p>Rodzaj pochówku</p>
                 </div>
@@ -54,7 +71,7 @@ export default function StepFour() {
                                     checked={burialInACoffin === "1"}
                                     onChange={() => {
                                         setBurialInACoffin("1");
-                                        setBurialInAnUrn("0");
+                                        setBurialInAnUrn("2");
                                     }}
                                 />
                                 <label htmlFor="coffin">Trumna</label>
@@ -69,7 +86,7 @@ export default function StepFour() {
                                     checked={burialInAnUrn === "1"}
                                     onChange={() => {
                                         setBurialInAnUrn("1");
-                                        setBurialInACoffin("0");
+                                        setBurialInACoffin("2");
                                     }}
                                 />
                                 <label htmlFor="urn">Urna</label>
@@ -78,16 +95,86 @@ export default function StepFour() {
                     </div>
                 </div>
 
-                <div className={styles.inputContainer}>
-                    <Image
-                        src={"/coffins/1.jpg"}
-                        width={200}
-                        height={100}
-                        alt="coffin-type-1"
-                    />
-                </div>
+                {Number(burialInACoffin) === 1 && (
+                    <div className={styles.imageContainer}>
+                        {[
+                            "1.jpg",
+                            "2.jpg",
+                            "3.jpg",
+                            "4.jpg",
+                            "5.jpg",
+                            "6.jpg",
+                            "7.jpg",
+                            "8.jpg",
+                            "9.jpg",
+                            "10.jpg",
+                            "11.jpg",
+                            "12.jpg",
+                        ].map((filename, index) => (
+                            <Image
+                                key={index}
+                                src={`/coffins/${filename}`}
+                                width={192}
+                                height={108}
+                                alt={`coffin-type-${index + 1}`}
+                                className={styles.image}
+                                onClick={() =>
+                                    handleZoom(`/coffins/${filename}`)
+                                }
+                            />
+                        ))}
+                    </div>
+                )}
+
+                {Number(burialInAnUrn) === 1 && (
+                    <div className={styles.imageContainer}>
+                        {[
+                            "1.jpg",
+                            "2.jpg",
+                            "3.jpg",
+                            "4.jpg",
+                            "5.jpg",
+                            "6.jpg",
+                            "7.jpg",
+                            "8.jpg",
+                            "9.jpg",
+                            "10.jpg",
+                        ].map((filename, index) => (
+                            <Image
+                                key={index}
+                                src={`/urns/${filename}`}
+                                width={155}
+                                height={207}
+                                alt={`coffin-type-${index + 1}`}
+                                className={styles.image}
+                                onClick={() => handleZoom(`/urns/${filename}`)}
+                            />
+                        ))}
+                    </div>
+                )}
+
+                {zoomedImage && (
+                    <div className={styles.modal} onClick={closeZoom}>
+                        <div className={styles.modalContent}>
+                            <Image
+                                src={zoomedImage}
+                                width={800}
+                                height={450}
+                                alt="zoomed-image"
+                            />
+                        </div>
+                    </div>
+                )}
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
+                    <Button
+                        type="button"
+                        onClick={handleBack}
+                        background="transparent"
+                        color="black"
+                    >
+                        Wstecz
+                    </Button>
                     <Button type="submit">Dalej</Button>
                 </div>
             </form>

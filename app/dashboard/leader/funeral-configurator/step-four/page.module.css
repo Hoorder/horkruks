@@ -62,3 +62,61 @@
 .button {
     margin-top: 50px;
 }
+
+.imageContainer {
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    margin-top: 40px;
+}
+
+.image {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: var(--semiBold);
+
+    font-size: var(--base-fs);
+    background-color: var(--black);
+    border: 1px solid black;
+}
+
+@media (max-width: 1460px) {
+    .imageContainer {
+        width: auto;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.modalContent {
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+}
+
+.modalContent img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+}

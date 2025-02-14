@@ -5,10 +5,15 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormContext } from "../context/FormContext";
 import { Button } from "@/app/dashboard/components/Button/Button";
+import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepSeven() {
     const { state, dispatch } = useFormContext();
     const router = useRouter();
+
+    const nameAndSurnameOrderingPerson = `${state.orderingName} ${state.orderingSurname}`;
+    const cityAndHouseNumberOrderingPerson = `${state.orderingCity} ${state.orderingHouseNumber}`;
+    const postCodeAndLocalityOrderingPerson = `${state.orderingPostCode} ${state.orderingLocality}`;
 
     const coffin = Number(state.burialInACoffin);
     const urn = Number(state.burialInAnUrn);
@@ -85,6 +90,9 @@ export default function StepSeven() {
                     musicalarrangementPrice,
                     flowersPrice,
                     insurance,
+                    nameAndSurnameOrderingPerson,
+                    cityAndHouseNumberOrderingPerson,
+                    postCodeAndLocalityOrderingPerson,
                 }),
             });
 
@@ -162,12 +170,19 @@ export default function StepSeven() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/summary");
+        router.push("/dashboard/leader/funeral-configurator/step-eight");
+    };
+
+    const handleBack = () => {
+        dispatch({ type: "PREV_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-six");
     };
 
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"7"} stepTitle={"Kosztorys"} />
+
                 <div className={styles.stepName}>
                     <p>Wycena usługi</p>
                 </div>
@@ -356,7 +371,15 @@ export default function StepSeven() {
                 </div>
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
-                    <Button type="submit">Generuj fakture</Button>
+                    <Button
+                        type="button"
+                        onClick={handleBack}
+                        background="transparent"
+                        color="black"
+                    >
+                        Wstecz
+                    </Button>
+                    <Button type="submit">Dalej</Button>
                 </div>
             </form>
         </>

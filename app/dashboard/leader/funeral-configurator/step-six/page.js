@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useFormContext } from "../context/FormContext";
 import { Button } from "@/app/dashboard/components/Button/Button";
 import { Input } from "@/app/dashboard/components/Input/Input";
+import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepSix() {
     const { state, dispatch } = useFormContext();
@@ -64,9 +65,17 @@ export default function StepSix() {
         dispatch({ type: "NEXT_STEP" });
         router.push("/dashboard/leader/funeral-configurator/step-seven");
     };
+
+    const handleBack = () => {
+        dispatch({ type: "PREV_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-five");
+    };
+
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"6"} stepTitle={"Pozostałe"} />
+
                 <div className={styles.stepName}>
                     <p>Dane osoby zmarłej</p>
                 </div>
@@ -168,6 +177,14 @@ export default function StepSix() {
                 </div>
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
+                    <Button
+                        type="button"
+                        onClick={handleBack}
+                        background="transparent"
+                        color="black"
+                    >
+                        Wstecz
+                    </Button>
                     <Button type="submit">Dalej</Button>
                 </div>
             </form>

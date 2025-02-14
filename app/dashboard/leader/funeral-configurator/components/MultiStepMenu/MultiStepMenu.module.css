@@ -16,6 +16,12 @@
     );
 }
 
+@media (max-width: 950px) {
+    .wrapper {
+        display: none;
+    }
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -74,8 +80,6 @@
 .stepActive {
     font-weight: var(--regular);
     color: var(--white);
-    /* background-color: #323030; */
     background-color: var(--black);
-    /* TODO: OGARNAC KOLOR */
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.051);
 }

@@ -6,6 +6,7 @@ import { Input } from "../../../components/Input/Input";
 import styles from "./page.module.css";
 import { useFormContext } from "../context/FormContext";
 import { useState } from "react";
+import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepThree() {
     const { state, dispatch } = useFormContext();
@@ -27,8 +28,21 @@ export default function StepThree() {
         state.funeralFlowersNote
     );
 
+    const [errorMessage, setErrorMessage] = useState("");
+
+
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (
+            (!funeralLocality,
+            !funeralDate,
+            !funeralTime,
+            !funeralEnteryTime,
+            !funeralGroupUpTime,
+            !funeralFlowers)
+        )
+            return setErrorMessage("Dane nie zostały wprowadzone");
 
         dispatch({
             type: "SET_FIELD",
@@ -70,9 +84,16 @@ export default function StepThree() {
         router.push("/dashboard/leader/funeral-configurator/step-four");
     };
 
+    const handleBack = () => {
+        dispatch({ type: "PREV_STEP" });
+        router.push("/dashboard/leader/funeral-configurator/step-two");
+    };
+
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"3"} stepTitle={"Ceremonia"} />
+
                 <div className={styles.stepName}>
                     <p>Informacje o ceremonii</p>
                 </div>
@@ -120,7 +141,7 @@ export default function StepThree() {
 
                 <div className={styles.inputContainer}>
                     <div className={styles.options}>
-                        <p>Kwiaty?</p>
+                        <p>Wieńce</p>
                         <div>
                             <div>
                                 <input
@@ -166,8 +187,27 @@ export default function StepThree() {
                 </div>
 
                 <div className={`${styles.inputContainer} ${styles.button}`}>
+                    <Button
+                        type="button"
+                        onClick={handleBack}
+                        background="transparent"
+                        color="black"
+                    >
+                        Wstecz
+                    </Button>
                     <Button type="submit">Dalej</Button>
                 </div>
+
+                <p
+                    style={{
+                        color: "red",
+                        fontWeight: "var(--medium)",
+                        fontSize: "14px",
+                        marginTop: "10px",
+                    }}
+                >
+                    {errorMessage}
+                </p>
             </form>
         </>
     );

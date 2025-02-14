@@ -7,14 +7,14 @@ export default function FuneralConfigurator({ children }) {
     return (
         <>
             <div className={styles.wrapper}>
-                <div className={styles.container}>
-                    <MultiStepMenu />
-                    <div className={styles.stepContainer}>
-                        <FormProvider>{children}</FormProvider>
+                <FormProvider>
+                    <div className={styles.container}>
+                        <MultiStepMenu />
+                        <div className={styles.stepContainer}>{children}</div>
                     </div>
-                </div>
 
-                <FuneralCardPreview />
+                    <FuneralCardPreview />
+                </FormProvider>
             </div>
         </>
     );

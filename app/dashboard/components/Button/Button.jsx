@@ -11,12 +11,14 @@ export function Button({
     children,
     onClick = null,
     background = "#171717",
+    color = "#ffffff",
+    fontSize = "1rem"
 }) {
     const backgroundColor = colors[background] || background;
 
     return (
         <button
-            style={{ backgroundColor: backgroundColor }}
+            style={{ backgroundColor, color, fontSize }}
             className={style.button}
             type={type}
             onClick={onClick}

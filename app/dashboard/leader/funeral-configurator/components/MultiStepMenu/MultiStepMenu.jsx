@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import styles from "./MultiStepMenu.module.css";
-import Link from "next/link";
 
 export function MultiStepMenu() {
     const pathname = usePathname();
@@ -34,19 +33,17 @@ export function MultiStepMenu() {
 
                     <div className={styles.menuContainer}>
                         {steps.map((step) => (
-                            <Link href={step.path} key={step.id}>
+                            <div
+                                key={step.id}
+                                className={`${styles.step} ${
+                                    step.path === pathname && styles.stepActive
+                                }`}
+                            >
                                 <div
-                                    className={`${styles.step} ${
-                                        step.path === pathname &&
-                                        styles.stepActive
-                                    }`}
-                                >
-                                    <div
-                                        className={`${styles.progressCircle}`}
-                                    ></div>
-                                    <p>{step.title}</p>
-                                </div>
-                            </Link>
+                                    className={`${styles.progressCircle}`}
+                                ></div>
+                                <p>{step.title}</p>
+                            </div>
                         ))}
                     </div>
                 </div>

@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import { useState } from "react";
 import { useFormContext } from "./context/FormContext";
 import { useRouter } from "next/navigation";
+import { StepBadge } from "./components/StepBadge/StepBadge";
 
 export default function Home() {
     const { state, dispatch } = useFormContext();
@@ -30,8 +31,20 @@ export default function Home() {
         state.insuranceAtKRUS || ""
     );
 
+    const [errorMessage, setErrorMessage] = useState("");
+
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (
+            (!deceasedName,
+            !deceasedSurname,
+            !deceasedPesel,
+            !deceasedBirthDate,
+            !deceasedDeathDate,
+            !noInsurance || !insuranceAtZUS || !insuranceAtKRUS)
+        )
+            return setErrorMessage("Dane nie zostały wprowadzone");
 
         dispatch({
             type: "SET_FIELD",
@@ -80,6 +93,8 @@ export default function Home() {
     return (
         <>
             <form className={styles.container} onSubmit={onSubmit}>
+                <StepBadge stepNumber={"1"} stepTitle={"Osoba zmarła"} />
+
                 <div className={styles.stepName}>
                     <p>Dane osoby zmarłej</p>
                 </div>
@@ -180,6 +195,16 @@ export default function Home() {
                 <div className={`${styles.inputContainer} ${styles.button}`}>
                     <Button type="submit">Dalej</Button>
                 </div>
+                <p
+                    style={{
+                        color: "red",
+                        fontWeight: "var(--medium)",
+                        fontSize: "14px",
+                        marginTop: "10px",
+                    }}
+                >
+                    {errorMessage}
+                </p>
             </form>
         </>
     );

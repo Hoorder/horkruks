@@ -27,37 +27,6 @@
     max-width: 560px;
 }
 
-.inputContainer p {
-    margin-top: 10px;
-    font-size: var(--small-fs);
-}
-
-.options {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    gap: 10px;
-
-    font-size: var(--base-fs);
-}
-
-.options div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.options div div {
-    border: 1px solid var(--black);
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: fit-content;
-    font-weight: var(--medium);
-}
-
 .button {
     margin-top: 50px;
 }
@@ -85,33 +54,21 @@
     color: white;
     border-top: 1px solid var(--border-color);
 }
-.column:nth-child(2n) {
-    background-color: #f8f8f8;
-}
-
-.servicesPriceInput {
-    font-family: var(--font-geist-sans);
-    background-color: transparent;
-    border: unset;
-    width: 70px;
-    font-weight: var(--medium);
-    font-size: var(--base-fs);
-    text-align: right;
-}
-
-.servicesPriceInput:focus {
-    outline: none;
-    border-bottom: 1px solid var(--black);
-}
-
-.servicesPriceInput::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
 
 .column div span {
     margin-left: 10px;
     font-weight: var(--semiBold);
+}
+
+.services {
+    display: flex;
+    align-items: center;
+    color: blue;
+}
+
+.services div {
+    display: flex;
+    gap: 20px;
 }
 
 @media (max-width: 1200px) {

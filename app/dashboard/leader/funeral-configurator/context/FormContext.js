@@ -3,17 +3,17 @@
 import { createContext, useContext, useReducer } from "react";
 
 const initialState = {
-    //TODO: STEP 1
+    // STEP 1
     deceasedName: "",
     deceasedSurname: "",
     deceasedPesel: "",
     deceasedBirthDate: "",
     deceasedDeathDate: "",
-    noInsurance: "",
-    insuranceAtZUS: "",
-    insuranceAtKRUS: "",
+    noInsurance: null,
+    insuranceAtZUS: null,
+    insuranceAtKRUS: null,
 
-    //TODO: STEP 2
+    // STEP 2
     orderingName: "",
     orderingSurname: "",
     orderingPhoneNumber: "",
@@ -22,30 +22,30 @@ const initialState = {
     orderingPostCode: "",
     orderingLocality: "",
 
-    //TODO: STEP 3
+    // STEP 3
     funeralDate: "",
     funeralLocality: "",
     funeralTime: "",
     funeralEnteryTime: "",
     funeralGroupUpTime: "",
-    funeralFlowers: "",
+    funeralFlowers: null,
     funeralFlowersNote: "",
 
-    //TODO: STEP 4
-    burialInAnUrn: "",
-    burialInACoffin: "",
+    // STEP 4
+    burialInAnUrn: null,
+    burialInACoffin: null,
 
-    //TODO: STEP 5
-    manager: "",
-    mournerOne: "",
-    mournerTwo: "",
-    mournerThree: "",
-    mournerFour: "",
-    mournerFive: "",
-    mournerSix: "",
-    mournerSeven: "",
+    // STEP 5
+    manager: null,
+    mournerOne: null,
+    mournerTwo: null,
+    mournerThree: null,
+    mournerFour: null,
+    mournerFive: null,
+    mournerSix: null,
+    mournerSeven: null,
 
-    //TODO: STEP 6
+    // STEP 6
     transport: "",
     bodyPrepary: "",
     tent: "",
@@ -53,7 +53,7 @@ const initialState = {
     musicalarrangement: "",
     musicalarrangementNote: "",
 
-    //TODO: STEP 7
+    // STEP 7
 
     coffinPrice: "0",
     urnPrice: "0",
@@ -73,7 +73,6 @@ const initialState = {
     step: 1,
 };
 
-// 📌 Reducer do zarządzania danymi
 const formReducer = (state, action) => {
     switch (action.type) {
         case "SET_FIELD":
@@ -89,10 +88,8 @@ const formReducer = (state, action) => {
     }
 };
 
-// 📌 Tworzymy kontekst
 const FormContext = createContext(undefined);
 
-// 📌 Provider, który opakujemy wokół formularza
 export const FormProvider = ({ children }) => {
     const [state, dispatch] = useReducer(formReducer, initialState);
 
@@ -103,7 +100,6 @@ export const FormProvider = ({ children }) => {
     );
 };
 
-// 📌 Hook do pobierania danych formularza
 export const useFormContext = () => {
     const context = useContext(FormContext);
     if (!context) {
