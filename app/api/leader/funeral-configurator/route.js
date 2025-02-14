@@ -57,44 +57,44 @@ export async function POST(req) {
 
         const [result] = await db.query(
             `INSERT INTO funeral_cards(
-            dead_person_name,
-            dead_person_surname,
-            pesel,
-            birth_date,
-            death_date,
-            insured_in_zus,
-            insured_in_krus,
-            principal_name,
-            principal_surname,
-            principal_phone_number,
-            principal_city,
-            principal_house_number,
-            principal_postal_code,
-            principal_locality,
-            funeral_locality,
-            funeral_date,
-            funeral_time,
-            entrance_time,
-            meeting_time,
-            id_urns_fk,
-            id_coffins_fk,
-            team_manager_id_fk,
-            mourner_one_id_fk,
-            mourner_two_id_fk,
-            mourner_three_id_fk,
-            mourner_four_id_fk,
-            mourner_five_id_fk,
-            mourner_six_id_fk,
-            mourner_seven_id_fk,
-            transport,
-            preparation_of_the_body,
-            tent,
-            funeral_cross,
-            musical_arrangement,
-            musical_notest,
-            flowers,
-            flower_notes)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                dead_person_name,
+                dead_person_surname,
+                pesel,
+                birth_date,
+                death_date,
+                insured_in_zus,
+                insured_in_krus,
+                principal_name,
+                principal_surname,
+                principal_phone_number,
+                principal_city,
+                principal_house_number,
+                principal_postal_code,
+                principal_locality,
+                funeral_locality,
+                funeral_date,
+                funeral_time,
+                entrance_time,
+                meeting_time,
+                id_urns_fk,
+                id_coffins_fk,
+                team_manager_id_fk,
+                mourner_one_id_fk,
+                mourner_two_id_fk,
+                mourner_three_id_fk,
+                mourner_four_id_fk,
+                mourner_five_id_fk,
+                mourner_six_id_fk,
+                mourner_seven_id_fk,
+                transport,
+                preparation_of_the_body,
+                tent,
+                funeral_cross,
+                musical_arrangement,
+                musical_notest,
+                flowers,
+                flower_notes
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 deceasedName,
                 deceasedSurname,
@@ -137,8 +137,13 @@ export async function POST(req) {
         );
 
         if (result.affectedRows === 1) {
+            // Pobierz ostatnio wstawione ID
+            const [idResult] = await db.query("SELECT LAST_INSERT_ID() as id_funeral_cards");
+            const id_funeral_cards = idResult[0].id_funeral_cards;
+
             return jsonResponse({
                 message: "Dane zostały zapisane pomyślnie!",
+                id_funeral_cards,
             });
         } else {
             return jsonResponse(
@@ -147,7 +152,11 @@ export async function POST(req) {
             );
         }
     } catch (error) {
-        console.error("Błąd API:", error);
+        console.error("Błąd API:", {
+            message: error.message,
+            stack: error.stack,
+            details: error,
+        });
         return jsonResponse({ error: "Wystąpił błąd serwera." }, 500);
     }
 }

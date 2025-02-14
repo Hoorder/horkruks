@@ -71,7 +71,7 @@ export default function StepFour() {
                                     checked={burialInACoffin === "1"}
                                     onChange={() => {
                                         setBurialInACoffin("1");
-                                        setBurialInAnUrn("2");
+                                        setBurialInAnUrn(null);
                                     }}
                                 />
                                 <label htmlFor="coffin">Trumna</label>
@@ -86,7 +86,7 @@ export default function StepFour() {
                                     checked={burialInAnUrn === "1"}
                                     onChange={() => {
                                         setBurialInAnUrn("1");
-                                        setBurialInACoffin("2");
+                                        setBurialInACoffin(null);
                                     }}
                                 />
                                 <label htmlFor="urn">Urna</label>
