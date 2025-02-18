@@ -65,35 +65,3 @@ export async function GET(request) {
         );
     }
 }
-
-// export async function DELETE(request) {
-//     try {
-//         const session = await getSession();
-
-//         if (!session.user_id) {
-//             return jsonResponse({ error: "Brak id" }, 401);
-//         }
-
-//         const body = await request.json();
-//         const taskId = body.taskId;
-
-//         if (!taskId) {
-//             return jsonResponse({ error: "Brak ID zadania" }, 400);
-//         }
-
-//         const deleteQuery =
-//             "DELETE FROM funeral_tasks WHERE id_tasks = ? AND id_users_fk = ?";
-//         const [result] = await db.query(deleteQuery, [taskId, session.user_id]);
-
-//         if (result.affectedRows === 0) {
-//             return jsonResponse(
-//                 { error: "Nie znaleziono zadania do usunięcia" },
-//                 404
-//             );
-//         }
-
-//         return jsonResponse({ message: "Zadanie zostało usunięte" });
-//     } catch (error) {
-//         return jsonResponse({ error: "Błąd podczas usuwania zadania" }, 500);
-//     }
-// }

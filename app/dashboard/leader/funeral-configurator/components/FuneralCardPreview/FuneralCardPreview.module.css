@@ -34,14 +34,7 @@
 }
 
 .categoryName {
-    /* font-style: italic; */
-    /* text-decoration: underline; */
-    /* margin-left: 10px; */
     margin-bottom: 5px;
-    /* font-weight: var(--medium); */
-}
-
-.categoryData {
 }
 
 .categoryData span {

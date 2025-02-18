@@ -8,7 +8,7 @@ import { Button } from "@/app/dashboard/components/Button/Button";
 import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepSeven() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep  } = useFormContext();
     const router = useRouter();
 
     const nameAndSurnameOrderingPerson = `${state.orderingName} ${state.orderingSurname}`;
@@ -44,6 +44,12 @@ export default function StepSeven() {
     const [totalAmount, setTotalAmount] = useState(0);
 
     const [invoiceName, setInvoiceName] = useState("");
+
+    useEffect(() => {
+        if (state.step < 7) {
+            router.push("/dashboard/leader/funeral-configurator");
+        }
+    }, [state.step, router]);
 
     const updateSummary = () => {
         const summary =
@@ -170,12 +176,12 @@ export default function StepSeven() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-eight");
+        goToStep("step-eight");
     };
 
     const handleBack = () => {
         dispatch({ type: "PREV_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-six");
+        goToStep("step-six");
     };
 
     return (

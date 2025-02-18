@@ -28,7 +28,6 @@ export async function POST(req) {
             return jsonResponse({ error: "Brak wymaganych danych." }, 400);
         }
 
-        // Lista wszystkich użytkowników
         const users = [
             manager,
             mournerOne,
@@ -38,27 +37,26 @@ export async function POST(req) {
             mournerFive,
             mournerSix,
             mournerSeven,
-        ].filter(user => user); // Filtrujemy, aby usunąć null/undefined
+        ].filter((user) => user !== null && user !== undefined && user !== "");
 
-        // Pobierz dane użytkowników (w tym funeral_service) z tabeli users
         const [userData] = await db.query(
             `SELECT id_users, funeral_service FROM users WHERE id_users IN (?)`,
             [users]
         );
 
-        // Tworzymy mapę id_users -> funeral_service dla łatwego dostępu
         const userServiceMap = new Map();
         for (const user of userData) {
             userServiceMap.set(user.id_users, user.funeral_service);
         }
 
-        // Przechodzimy przez każdego użytkownika i wykonujemy zapytanie INSERT
         for (const user of users) {
             const funeralService = userServiceMap.get(user);
 
             if (funeralService === undefined) {
                 return jsonResponse(
-                    { error: `Nie znaleziono danych użytkownika o ID: ${user}` },
+                    {
+                        error: `Nie znaleziono danych użytkownika o ID: ${user}`,
+                    },
                     404
                 );
             }
@@ -69,19 +67,29 @@ export async function POST(req) {
                     id_users_fk,
                     funeral_ceremony_place,
                     funeral_ceremony_payout,
+                    funeral_transport_payout,
+                    body_preparation_payout,
+                    working_hours_payout,
                     task_date)
-                VALUES (?,?,?,?, CURRENT_DATE())`,
+                VALUES (?,?,?,?,?,?,?, CURRENT_DATE())`,
                 [
                     id_funeral_cards,
                     user,
                     funeralLocality,
-                    funeralService // Używamy funeral_service z tabeli users
+                    funeralService,
+                    0,
+                    0,
+                    0,
                 ]
             );
 
             if (result.affectedRows !== 1) {
                 return jsonResponse(
-                    { error: "Nie udało się zapisać danych dla użytkownika: " + user },
+                    {
+                        error:
+                            "Nie udało się zapisać danych dla użytkownika: " +
+                            user,
+                    },
                     500
                 );
             }
@@ -90,7 +98,6 @@ export async function POST(req) {
         return jsonResponse({
             message: "Dane zostały zapisane pomyślnie!",
         });
-
     } catch (error) {
         console.error("Błąd API:", {
             message: error.message,

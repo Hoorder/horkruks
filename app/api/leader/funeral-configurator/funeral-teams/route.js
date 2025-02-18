@@ -21,7 +21,15 @@ export async function GET(request) {
         CONCAT(m4.first_name, " ", m4.last_name) AS mourner_four,
         CONCAT(m5.first_name, " ", m5.last_name) AS mourner_five,
         CONCAT(m6.first_name, " ", m6.last_name) AS mourner_six,
-        CONCAT(m7.first_name, " ", m7.last_name) AS mourner_seven
+        CONCAT(m7.first_name, " ", m7.last_name) AS mourner_seven,
+        u.email AS manager_email,
+        m1.email AS mourner_one_email,
+        m2.email AS mourner_two_email,
+        m3.email AS mourner_three_email,
+        m4.email AS mourner_four_email,
+        m5.email AS mourner_five_email,
+        m6.email AS mourner_six_email,
+        m7.email AS mourner_seven_email
         FROM teams t
         LEFT JOIN users u ON t.team_manager_id_fk = u.id_users
         LEFT JOIN users m1 ON t.mourner_one_id_fk = m1.id_users

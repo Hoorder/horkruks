@@ -5,11 +5,11 @@ import { Input } from "../../../components/Input/Input";
 import styles from "./page.module.css";
 import { useFormContext } from "../context/FormContext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepTwo() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep } = useFormContext();
     const router = useRouter();
 
     const [orderingName, setOrderingName] = useState(state.orderingName);
@@ -32,7 +32,13 @@ export default function StepTwo() {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const onSubmit = (e) => {
+    useEffect(() => {
+        if (state.step < 2) {
+            router.push("/dashboard/leader/funeral-configurator/");
+        }
+    }, [state.step, router]);
+
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         if (
@@ -83,12 +89,12 @@ export default function StepTwo() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-three");
+        goToStep("step-three");
     };
 
     const handleBack = () => {
         dispatch({ type: "PREV_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/");
+        goToStep("");
     };
 
     return (
@@ -118,7 +124,7 @@ export default function StepTwo() {
                     <Input
                         label={"Numer telefonu"}
                         nameAndId={"phone-number-ordering-person"}
-                        placeholder={"Np. 04928394032"}
+                        placeholder={"Np. 123456789"}
                         value={orderingPhoneNumber}
                         onChange={(e) => setOrderingPhoneNumber(e.target.value)}
                     />
@@ -128,7 +134,7 @@ export default function StepTwo() {
                     <Input
                         label={"Ulica"}
                         nameAndId={"city-ordering-person"}
-                        placeholder={"Np. Zdziarski"}
+                        placeholder={"Np. Urocza"}
                         value={orderingCity}
                         onChange={(e) => setOrderingCity(e.target.value)}
                     />

@@ -5,17 +5,23 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { useFormContext } from "../context/FormContext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepFour() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep } = useFormContext();
     const router = useRouter();
 
     const [burialInAnUrn, setBurialInAnUrn] = useState(state.burialInAnUrn);
     const [burialInACoffin, setBurialInACoffin] = useState(
         state.burialInACoffin
     );
+
+    useEffect(() => {
+        if (state.step < 4) {
+            router.push("/dashboard/leader/funeral-configurator");
+        }
+    }, [state.step, router]);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -33,12 +39,12 @@ export default function StepFour() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-five");
+        goToStep("step-five");
     };
 
     const handleBack = () => {
         dispatch({ type: "PREV_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-three");
+        goToStep("step-three");
     };
     const [zoomedImage, setZoomedImage] = useState(null);
 

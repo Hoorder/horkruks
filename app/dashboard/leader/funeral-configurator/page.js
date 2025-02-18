@@ -3,13 +3,13 @@
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import styles from "./page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormContext } from "./context/FormContext";
 import { useRouter } from "next/navigation";
 import { StepBadge } from "./components/StepBadge/StepBadge";
 
 export default function Home() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep } = useFormContext();
     const router = useRouter();
 
     const [deceasedName, setDeceasedName] = useState(state.deceasedName);
@@ -88,7 +88,7 @@ export default function Home() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-two");
+        goToStep("step-two");
     };
     return (
         <>
@@ -117,7 +117,7 @@ export default function Home() {
                     <Input
                         label={"Pesel"}
                         nameAndId={"pesel-death-person"}
-                        placeholder={"Np. 04928394032"}
+                        placeholder={"Np. 74829384938"}
                         value={deceasedPesel}
                         onChange={(e) => setDeceasedPesel(e.target.value)}
                     />

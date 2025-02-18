@@ -38,7 +38,7 @@ export function HistoryCeremonyList() {
 
                 const data = await response.json();
                 setFuneralTasks(data.tasks);
-                setAvailableYears(data.years.map((yearData) => yearData.year)); // Zapisujemy dostępne lata
+                setAvailableYears(data.years.map((yearData) => yearData.year));
             } catch (error) {
                 console.error("Błąd w trakcie żądania:", error);
             } finally {

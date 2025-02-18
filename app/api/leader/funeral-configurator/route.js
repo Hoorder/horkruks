@@ -137,7 +137,6 @@ export async function POST(req) {
         );
 
         if (result.affectedRows === 1) {
-            // Pobierz ostatnio wstawione ID
             const [idResult] = await db.query("SELECT LAST_INSERT_ID() as id_funeral_cards");
             const id_funeral_cards = idResult[0].id_funeral_cards;
 

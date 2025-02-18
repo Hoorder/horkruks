@@ -161,15 +161,10 @@ export function FuneralCardPreview() {
                               }`
                             : " Nie"}
                     </p>
-
                     <p>{state.manager}</p>
-                    <p>{state.mournerOne}</p>
+                    <p>{state.mournerOne} {state.mournerOneEmail}</p>
                     <p>{state.mournerTwo}</p>
                     <p>{state.mournerThree}</p>
-                    <p>{state.mournerFour}</p>
-                    <p>{state.mournerFive}</p>
-                    <p>{state.mournerSix}</p>
-                    <p>{state.mournerSeven}</p>
                 </div>
             </div>
         </div>

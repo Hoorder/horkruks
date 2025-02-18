@@ -5,11 +5,11 @@ import { Button } from "../../../components/Button/Button";
 import { Input } from "../../../components/Input/Input";
 import styles from "./page.module.css";
 import { useFormContext } from "../context/FormContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepThree() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep  } = useFormContext();
     const router = useRouter();
 
     const [funeralLocality, setFuneralLocality] = useState(
@@ -30,6 +30,11 @@ export default function StepThree() {
 
     const [errorMessage, setErrorMessage] = useState("");
 
+        useEffect(() => {
+            if (state.step < 3) {
+                router.push("/dashboard/leader/funeral-configurator");
+            }
+        }, [state.step, router]);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -81,12 +86,12 @@ export default function StepThree() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-four");
+        goToStep("step-four");
     };
 
     const handleBack = () => {
         dispatch({ type: "PREV_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-two");
+        goToStep("step-two");
     };
 
     return (

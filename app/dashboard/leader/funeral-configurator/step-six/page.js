@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormContext } from "../context/FormContext";
 import { Button } from "@/app/dashboard/components/Button/Button";
@@ -9,7 +9,7 @@ import { Input } from "@/app/dashboard/components/Input/Input";
 import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepSix() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep } = useFormContext();
     const router = useRouter();
 
     const [transport, setTransport] = useState(state.transport);
@@ -22,6 +22,12 @@ export default function StepSix() {
     const [musicalarrangementNote, setMusicalarrangementNote] = useState(
         state.musicalarrangementNote
     );
+
+    useEffect(() => {
+        if (state.step < 6) {
+            router.push("/dashboard/leader/funeral-configurator");
+        }
+    }, [state.step, router]);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -63,12 +69,12 @@ export default function StepSix() {
         });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-seven");
+        goToStep("step-seven");
     };
 
     const handleBack = () => {
         dispatch({ type: "PREV_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-five");
+        goToStep("step-five");
     };
 
     return (
@@ -77,7 +83,7 @@ export default function StepSix() {
                 <StepBadge stepNumber={"6"} stepTitle={"Pozostałe"} />
 
                 <div className={styles.stepName}>
-                    <p>Dane osoby zmarłej</p>
+                    <p>Dodatkowe usługi</p>
                 </div>
 
                 <div className={styles.inputContainer}>
@@ -167,8 +173,8 @@ export default function StepSix() {
                 <div className={styles.inputContainer}>
                     <Input
                         label={"Oprawa muzyczna"}
-                        nameAndId={"name-death-person"}
-                        placeholder={"Notatki"}
+                        nameAndId={"musical-notes"}
+                        placeholder={"Np. Barka na trąbce"}
                         value={musicalarrangementNote}
                         onChange={(e) =>
                             setMusicalarrangementNote(e.target.value)

@@ -78,12 +78,12 @@ export default function Settings() {
                                     disabled={true}
                                     value={team.role_handling}
                                 />
-                                <Input
+                                {/* <Input
                                     label={"Zespół"}
                                     nameAndId={"userTeam"}
                                     disabled={true}
                                     value={team.team_name}
-                                />
+                                /> */}
                                 <Input
                                     label={"Stanowisko"}
                                     nameAndId={"userRole"}

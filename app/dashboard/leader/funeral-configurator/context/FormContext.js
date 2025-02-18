@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useReducer } from "react";
+import { useRouter } from "next/navigation";
 
 const initialState = {
     // STEP 1
@@ -44,6 +45,15 @@ const initialState = {
     mournerFive: null,
     mournerSix: null,
     mournerSeven: null,
+
+    managerEmail: "",
+    mournerOneEmail: "",
+    mournerTwoEmail: "",
+    mournerThreeEmail: "",
+    mournerFourEmail: "",
+    mournerFiveEmail: "",
+    mournerSixEmail: "",
+    mournerSevenEmail: "",
 
     // STEP 6
     transport: "",
@@ -92,9 +102,16 @@ const FormContext = createContext(undefined);
 
 export const FormProvider = ({ children }) => {
     const [state, dispatch] = useReducer(formReducer, initialState);
+    const router = useRouter();
+
+    const goToStep = (step) => {
+        if (step > state.step) return;
+        dispatch({ type: "SET_STEP", step });
+        router.push(`/dashboard/leader/funeral-configurator/${step}`);
+    };
 
     return (
-        <FormContext.Provider value={{ state, dispatch }}>
+        <FormContext.Provider value={{ state, dispatch, goToStep }}>
             {children}
         </FormContext.Provider>
     );

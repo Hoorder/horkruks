@@ -1,4 +1,3 @@
-// const defaultHref = `/dashboard/employee`;
 
 export const categories = [
     {

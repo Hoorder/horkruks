@@ -9,7 +9,7 @@ import { Input } from "@/app/dashboard/components/Input/Input";
 import { StepBadge } from "../components/StepBadge/StepBadge";
 
 export default function StepFive() {
-    const { state, dispatch } = useFormContext();
+    const { state, dispatch, goToStep } = useFormContext();
     const router = useRouter();
 
     const [chooseTeam, setChooseTeam] = useState(true);
@@ -24,12 +24,27 @@ export default function StepFive() {
     const [mournerSix, setMournerSix] = useState(state.mournerSix);
     const [mournerSeven, setMournerSeven] = useState(state.mournerSeven);
 
+    const [managerEmail, setManagerEmail] = useState(state.managerEmail);
+    const [mournerOneEmail, setMournerOneEmail] = useState(state.mournerOneEmail);
+    const [mournerTwoEmail, setMournerTwoEmail] = useState(state.mournerTwoEmail);
+    const [mournerThreeEmail, setMournerThreeEmail] = useState(state.mournerThreeEmail);
+    const [mournerFourEmail, setMournerFourEmail] = useState(state.mournerFourEmail);
+    const [mournerFiveEmail, setMournerFiveEmail] = useState(state.mournerFiveEmail);
+    const [mournerSixEmail, setMournerSixEmail] = useState(state.mournerSixEmail);
+    const [mournerSevenEmail, setMournerSevenEmail] = useState(state.mournerSevenEmail);
+
     const [errorMsg, setErrorMsg] = useState("");
     const [teamData, setTeamData] = useState([]);
     const [schowTeams, setSchowTeams] = useState([]);
 
     const [schowManagers, setSchowManagers] = useState([]);
     const [schowEmployee, setSchowEmployee] = useState([]);
+
+    useEffect(() => {
+        if (state.step < 5) {
+            router.push("/dashboard/leader/funeral-configurator");
+        }
+    }, [state.step, router]);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -74,14 +89,55 @@ export default function StepFive() {
             field: "mournerSeven",
             value: mournerSeven,
         });
+        
+        dispatch({
+            type: "SET_FIELD",
+            field: "managerEmail",
+            value: managerEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerOneEmail",
+            value: mournerOneEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerTwoEmail",
+            value: mournerTwoEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerThreeEmail",
+            value: mournerThreeEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerFourEmail",
+            value: mournerFourEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerFiveEmail",
+            value: mournerFiveEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerSixEmail",
+            value: mournerSixEmail,
+        });
+        dispatch({
+            type: "SET_FIELD",
+            field: "mournerSevenEmail",
+            value: mournerSevenEmail,
+        });
 
         dispatch({ type: "NEXT_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-six");
+        goToStep("step-six");
     };
 
     const handleBack = () => {
         dispatch({ type: "PREV_STEP" });
-        router.push("/dashboard/leader/funeral-configurator/step-four");
+        goToStep("step-four");
     };
 
     useEffect(() => {
@@ -149,6 +205,15 @@ export default function StepFive() {
             setMournerFive(data[0].mourner_five_id_fk);
             setMournerSix(data[0].mourner_six_id_fk);
             setMournerSeven(data[0].mourner_seven_id_fk);
+
+            setManagerEmail(data[0].manager_email);
+            setMournerOneEmail(data[0].mourner_one_email);
+            setMournerTwoEmail(data[0].mourner_two_email);
+            setMournerThreeEmail(data[0].mourner_three_email);
+            setMournerFourEmail(data[0].mourner_four_email);
+            setMournerFiveEmail(data[0].mourner_five_email);
+            setMournerSixEmail(data[0].mourner_six_email);
+            setMournerSevenEmail(data[0].mourner_seven_email);
         } catch (error) {
             setErrorMsg(`Sprawdź end-point: ${error}`);
         }
@@ -227,11 +292,13 @@ export default function StepFive() {
                                 <div className={styles.inputContainer}>
                                     <Input
                                         label="Nazwa zespołu"
+                                        nameAndId={"team-name"}
                                         value={team.team_name}
                                         disabled
                                     />
                                     <Input
                                         label="Kierownik"
+                                        nameAndId={"team-manager"}
                                         value={team.manager}
                                         disabled
                                     />
@@ -239,16 +306,19 @@ export default function StepFive() {
                                 <div className={styles.inputContainer}>
                                     <Input
                                         label="Żałobnik 1"
+                                        nameAndId={"mourner-one"}
                                         value={team.mourner_one}
                                         disabled
                                     />
                                     <Input
                                         label="Żałobnik 2"
+                                        nameAndId={"mourner-two"}
                                         value={team.mourner_two}
                                         disabled
                                     />
                                     <Input
                                         label="Żałobnik 3"
+                                        nameAndId={"mourner-three"}
                                         value={team.mourner_three}
                                         disabled
                                     />
@@ -256,16 +326,19 @@ export default function StepFive() {
                                 <div className={styles.inputContainer}>
                                     <Input
                                         label="Żałobnik 4"
+                                        nameAndId={"mourner-four"}
                                         value={team.mourner_four}
                                         disabled
                                     />
                                     <Input
                                         label="Żałobnik 5"
+                                        nameAndId={"mourner-five"}
                                         value={team.mourner_five}
                                         disabled
                                     />
                                     <Input
                                         label="Żałobnik 6"
+                                        nameAndId={"mourner-six"}
                                         value={team.mourner_six}
                                         disabled
                                     />
@@ -273,6 +346,7 @@ export default function StepFive() {
                                 <div className={styles.inputContainer}>
                                     <Input
                                         label="Żałobnik 7"
+                                        nameAndId={"mourner-seven"}
                                         value={team.mourner_seven}
                                         disabled
                                     />
