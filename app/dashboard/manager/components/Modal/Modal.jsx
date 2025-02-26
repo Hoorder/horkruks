@@ -43,7 +43,7 @@ export function Modal({
                                         <span>{funeralCard.entrance_time}</span>
                                     </p>
                                     <p>
-                                        Zbiórka:{" "}
+                                        Msza Św.:{" "}
                                         <span>{funeralCard.funeral_time}</span>
                                     </p>
                                 </div>

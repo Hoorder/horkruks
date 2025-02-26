@@ -46,8 +46,7 @@ export async function POST(req) {
             funeral_transport_payout, body_preparation_payout, working_hours_payout) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
-                id_users_fk,
-                task_date,
+                id_users_fk, task_date,
                 funeral_ceremony_place,
                 funeral_transport_place,
                 body_preparation_place,

@@ -3,6 +3,7 @@ import { getIronSession } from "iron-session";
 import { sessionOptions } from "@/app/auth/lib/session";
 import { combinedRegex } from "../utils/validators";
 import { findUserByEmail } from "../utils/userdata";
+import bcrypt from "bcrypt";
 
 async function getSession() {
     const cookieStore = await cookies();
@@ -53,7 +54,12 @@ export async function POST(req) {
             );
         }
 
-        if (rows[0].password === password) {
+        const isPasswordCorrect = await bcrypt.compare(
+            password,
+            rows[0].password
+        );
+
+        if (isPasswordCorrect) {
             const session = await getSession();
 
             session.loggedIn = "true";

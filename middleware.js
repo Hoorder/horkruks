@@ -9,8 +9,6 @@ export async function middleware(req) {
     const { role, loggedIn } = session;
     const path = req.nextUrl.pathname;
 
-    //TODO: Jeśli /strona-ktra-nie-istenieje to /dashboard jesli zalogowany jeśli nie to /auth/login
-
     if (path === "/" || (path.startsWith("/dashboard") && !loggedIn)) {
         return NextResponse.redirect(new URL("/auth/login", req.url));
     }

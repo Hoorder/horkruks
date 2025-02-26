@@ -129,7 +129,8 @@ export default function Summary() {
                     state.funeralLocality,
                     state.funeralTime,
                     state.funeralEnteryTime,
-                    state.funeralGroupUpTime
+                    state.funeralGroupUpTime,
+                    state.funeralDate
                 );
                 console.log("E-mail wysłany pomyślnie:", result);
                 setCreateEmployeeEmailSendingMessage(true);
@@ -165,7 +166,7 @@ export default function Summary() {
         createFuneralCardMessage,
         createInvoiceMessage,
         createEmployeeTasksMessage,
-        createEmployeeEmailSendingMessage
+        createEmployeeEmailSendingMessage,
     ]);
 
     return (

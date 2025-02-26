@@ -17,7 +17,8 @@ export const sendEmail = async (
     funeralLocality,
     funeralTime,
     funeralEnteryTime,
-    funeralGroupUpTime
+    funeralGroupUpTime,
+    funeralDate
 ) => {
     const mailOptions = {
         from: `Horkruks <${process.env.EMAIL_USER}>`,
@@ -58,12 +59,12 @@ export const sendEmail = async (
                 margin-top: 20px;
                 font-size: 16px;
                 color: white !important;
-                background-color: #692ae5;
+                background-color:rgb(0, 0, 0);
                 text-decoration: none;
                 border-radius: 5px;
             }
             .button:hover {
-                background-color: #0056b3;
+                background-color:rgb(58, 59, 59);
             }
             .footer {
                 margin-top: 20px;
@@ -76,7 +77,7 @@ export const sendEmail = async (
     <body>
         <div class="container">
             <h2>Witam,</h2>
-            <p>Chciałbym poinformować Cię o uroczystości pogrzebowej, która odbędzie się w miejscowości ${funeralLocality}.</p>
+            <p>Chciałbym poinformować Cię o uroczystości pogrzebowej, która odbędzie się w miejscowości ${funeralLocality} dnia ${funeralDate}</p>
             <p>Zbiórka na firmie ${funeralGroupUpTime}</p>
             <p>Wniesienie ciała ${funeralEnteryTime}</p>
             <p>Msza pogrzebowa ${funeralTime}</p>
@@ -94,6 +95,92 @@ export const sendEmail = async (
 
     try {
         const info = await transporter.sendMail(mailOptions);
+        console.log("E-mail wysłany:", info.messageId);
+        return info;
+    } catch (error) {
+        console.error("Błąd podczas wysyłania e-maila:", error);
+        throw error;
+    }
+};
+
+export const sendTransportAddEmail = async (
+    to,
+    transportFrom,
+    transportTo,
+    orderingPhoneNumber
+) => {
+    const mailOptions = {
+        from: `Horkruks <${process.env.EMAIL_USER}>`,
+        to,
+        subject: `Otrzymałeś nowe zlecenie przewozu!`,
+        html: `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Potwierdzenie obecności</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                max-width: 600px;
+                margin: 20px auto;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                color: #333;
+            }
+            p {
+                color: #555;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                margin-top: 20px;
+                font-size: 16px;
+                color: white !important;
+                background-color:rgb(0, 0, 0);
+                text-decoration: none;
+                border-radius: 5px;
+            }
+            .button:hover {
+                background-color:rgb(58, 59, 59);
+            }
+            .footer {
+                margin-top: 20px;
+                font-size: 12px;
+                color: #777;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Witam,</h2>
+            <p>Zostałeś przypisany do nowego zlecenia przewozu zwłok z ${transportFrom} do ${transportTo}</p>
+            <p>Telefon do zleceniodawcy ${orderingPhoneNumber}</p>
+            <p>Więcej informacji po kliknięciu w przycisk ponizej</p>
+            <a href="http://192.168.227.13:3000/" class="button">Do systemu</a>
+            <div class="footer">
+                <p>Ten e-mail został wygenerowany automatycznie, prosimy na niego nie odpowiadać.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    `,
+    };
+
+    try {
+        const info = await transporter.sendMail(mailOptions); // Poprawiona linia
         console.log("E-mail wysłany:", info.messageId);
         return info;
     } catch (error) {
