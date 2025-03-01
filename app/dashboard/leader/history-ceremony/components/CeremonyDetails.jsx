@@ -16,6 +16,8 @@ export function CeremonyDetails({ ceremonyId }) {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
+    const [refresh, setRefrest] = useState();
+
     useEffect(() => {
         const handleCeremonyId = async () => {
             setHide(false);
@@ -46,7 +48,7 @@ export function CeremonyDetails({ ceremonyId }) {
         };
 
         handleCeremonyId();
-    }, [change, ceremonyId, orderEnd]);
+    }, [change, refresh, ceremonyId, orderEnd]);
 
     const handleChangeEmployee = async (employeeId) => {
         try {
@@ -203,6 +205,10 @@ export function CeremonyDetails({ ceremonyId }) {
                                                                 {
                                                                     employee.employee
                                                                 }
+                                                                {"/ "}
+                                                                {
+                                                                    employee.role_handling
+                                                                }
                                                             </option>
                                                         ))}
                                                 </select>
@@ -283,6 +289,10 @@ export function CeremonyDetails({ ceremonyId }) {
                                                                 {"/ "}
                                                                 {
                                                                     employee.employee
+                                                                }
+                                                                {" / "}
+                                                                {
+                                                                    employee.role_handling
                                                                 }
                                                             </option>
                                                         ))}
@@ -371,6 +381,16 @@ export function CeremonyDetails({ ceremonyId }) {
                                     )}
                             </div>
                         ))}
+
+                        <div className={styles.buttonContainer}>
+                            <Button
+                                type="button"
+                                className={styles.refreshButton}
+                                onClick={() => setRefrest((prev) => !prev)}
+                            >
+                                ⟳
+                            </Button>
+                        </div>
                     </div>
                     <div className={styles.containerRight}>
                         <div className={styles.stepName}>
