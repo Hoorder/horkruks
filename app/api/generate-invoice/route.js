@@ -20,7 +20,7 @@ export async function POST(req) {
         } = await req.json();
 
         const VAT_RATE = 0.23; // 23% VAT
-        const invoiceName = `faktura_${Date.now()}.pdf`;
+        const invoiceName = `FV_${Date.now()}.pdf`;
         const filePath = path.join(
             process.cwd(),
             "public",

@@ -24,7 +24,11 @@ export async function GET(req) {
         CONCAT(employee.first_name," ",employee.last_name) AS employee,
         transport_from,
         transport_to,
-        contact_number
+        contact_number,
+        DATE_FORMAT(order_created_at, '%H:%i') AS order_created_time, 
+        DATE_FORMAT(order_displayed_at, '%H:%i') AS order_displayed_time, 
+        DATE_FORMAT(order_confirmed_at, '%H:%i') AS order_confirmed_time, 
+        DATE_FORMAT(order_completed_at, '%H:%i') AS order_completed_time 
         FROM transport_orders
         LEFT JOIN users manager ON manager.id_users = manager_id_fk
         LEFT JOIN users employee ON employee.id_users = employee_id_fk

@@ -74,7 +74,7 @@ export function TransportList({
                     <p>Historia przewozów</p>
                     <p>
                         Kliknij na dany przejazd aby sprawdzić szczegóły
-                        zlecenia
+                        zlecenia. Lista wyświetla 10 ostatnich zleceń.
                     </p>
                 </div>
 
@@ -104,7 +104,14 @@ export function TransportList({
                             <tbody>
                                 {transportData.map((transport) => (
                                     <tr key={transport.id_transport_orders}>
-                                        <td>{transport.id_transport_orders}</td>
+                                        <td
+                                            className={` ${
+                                                transport.order_completed_time &&
+                                                styles.endOrder
+                                            }`}
+                                        >
+                                            {transport.id_transport_orders}
+                                        </td>
                                         <td>{transport.manager_name}</td>
                                         <td>{transport.transport_from}</td>
                                         <td>

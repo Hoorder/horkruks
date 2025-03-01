@@ -15,6 +15,7 @@ export function TransportDataForm({
     const [employees, setEmployees] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
     const [succesMsg, setSuccesMsg] = useState("");
+    const [isSending, setIsSending] = useState(false);
 
     const [managerId, setManagerId] = useState(null);
     const [employeeId, setEmployeeId] = useState(null);
@@ -24,7 +25,7 @@ export function TransportDataForm({
     const [transportTo, setTransportTo] = useState("");
     const [orderingPhoneNumber, setOrderingPhoneNumber] = useState("");
 
-    const [editedTransportData, setEditedTransportData] = useState("");
+    const [editedTransportData, setEditedTransportData] = useState([]);
 
     useEffect(() => {
         const showEmployee = async () => {
@@ -70,7 +71,7 @@ export function TransportDataForm({
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+        setIsSending(true);
         if (
             !managerId ||
             !employeeId ||
@@ -135,7 +136,8 @@ export function TransportDataForm({
 
             try {
                 const result = await sendTransportAddEmail(
-                    `w65470@student.wsiz.edu.pl`,
+                    `${employeeEmail},
+                    ${maganerEmail}`,
                     transportFrom,
                     transportTo,
                     orderingPhoneNumber
@@ -147,9 +149,10 @@ export function TransportDataForm({
 
             setSuccesMsg("Zlecenie zostało wysłane!");
             setErrorMsg("");
-            setTransportFrom("");
-            setTransportTo("");
-            setOrderingPhoneNumber("");
+            setIsSending(false);
+            // setTransportFrom("");
+            // setTransportTo("");
+            // setOrderingPhoneNumber("");
             setIsClicked(true);
         } catch (error) {
             setErrorMsg("Błąd podczas wysyłania");
@@ -215,34 +218,19 @@ export function TransportDataForm({
                             <label>Kierownik</label>
 
                             <select
-                                onChange={(e) => setManagerId(e.target.value)}
-                            >
-                                <option value={null}></option>
-                                {employees
-                                    .filter(
-                                        (employee) =>
-                                            employee.position === "manager"
-                                    )
-                                    .map((employee) => (
-                                        <option
-                                            key={employee.id_users}
-                                            value={employee.id_users}
-                                        >
-                                            {employee.employeeData}
-                                        </option>
-                                    ))}
-                            </select>
-                            {/* <select
                                 onChange={(e) => {
-                                    const selectedEmployee = employees.find(
-                                        (emp) => emp.id_users === e.target.value
+                                    const selectedId = e.target.value;
+                                    setManagerId(selectedId);
+
+                                    const selectedManager = employees.find(
+                                        (employee) =>
+                                            employee.id_users.toString() ===
+                                            selectedId
                                     );
-                                    setManagerId(e.target.value);
-                                    setManagerEmail(
-                                        selectedEmployee
-                                            ? selectedEmployee.email
-                                            : ""
-                                    ); // Ustawienie e-maila menedżera
+
+                                    if (selectedManager) {
+                                        setManagerEmail(selectedManager.email);
+                                    }
                                 }}
                             >
                                 <option value={null}></option>
@@ -259,12 +247,27 @@ export function TransportDataForm({
                                             {employee.employeeData}
                                         </option>
                                     ))}
-                            </select> */}
+                            </select>
                         </div>
                         <div className={styles.selectContainer}>
                             <label>Pracownik</label>
                             <select
-                                onChange={(e) => setEmployeeId(e.target.value)}
+                                onChange={(e) => {
+                                    const selectedId = e.target.value;
+                                    setEmployeeId(selectedId);
+
+                                    const selectedEmployee = employees.find(
+                                        (employee) =>
+                                            employee.id_users.toString() ===
+                                            selectedId
+                                    );
+
+                                    if (selectedEmployee) {
+                                        setEmployeeEmail(
+                                            selectedEmployee.email
+                                        );
+                                    }
+                                }}
                             >
                                 <option value={null}></option>
                                 {employees
@@ -308,8 +311,16 @@ export function TransportDataForm({
                         value={orderingPhoneNumber}
                         onChange={(e) => setOrderingPhoneNumber(e.target.value)}
                     />
-                    <div className={styles.inputContainer}>
-                        <Button fontSize="14px">Zleć przewóz</Button>
+                    <div
+                        className={`${styles.inputContainer} ${styles.inputContainerBtn}`}
+                    >
+                        <Button fontSize="14px">
+                            {isSending ? (
+                                <p className={styles.loader}></p>
+                            ) : (
+                                "Zleć przewóz"
+                            )}
+                        </Button>
                     </div>
                     <p className={styles.errorMessage}>{errorMsg}</p>
                     <p className={styles.errorMessage}>{succesMsg}</p>
@@ -383,11 +394,66 @@ export function TransportDataForm({
                             }
                         />
                     ))}
-                    <div className={styles.inputContainer}>
+                    <div
+                        className={`${styles.inputContainer} ${styles.inputContainerBtn}`}
+                    >
                         <Button fontSize="14px">Zapisz</Button>
                     </div>
                     <p className={styles.errorMessage}>{errorMsg}</p>
                     <p className={styles.succesMessage}>{succesMsg}</p>
+
+                    {editedTransportData.map((data) => (
+                        <div
+                            className={styles.containerr}
+                            key={data.id_transport_orders}
+                        >
+                            <div
+                                className={`${styles.progressLevel} ${
+                                    data.order_created_time && styles.send
+                                }`}
+                            >
+                                <p>Wysłano</p>
+                                <p>{data.order_created_time}</p>
+                            </div>
+                            <div
+                                className={`${styles.progressLevel} ${
+                                    data.order_displayed_time && styles.show
+                                }`}
+                            >
+                                <p>Wyświetlono</p>
+                                {data.order_displayed_time ? (
+                                    <p>{data.order_displayed_time}</p>
+                                ) : (
+                                    <p>--:--</p>
+                                )}
+                            </div>
+                            <div
+                                className={`${styles.progressLevel} ${
+                                    data.order_confirmed_time &&
+                                    styles.confirmed
+                                }`}
+                            >
+                                <p>Potwierdzono</p>
+                                {data.order_confirmed_time ? (
+                                    <p>{data.order_confirmed_time}</p>
+                                ) : (
+                                    <p>--:--</p>
+                                )}
+                            </div>
+                            <div
+                                className={`${styles.progressLevel} ${
+                                    data.order_completed_time && styles.end
+                                }`}
+                            >
+                                <p>Zakończono</p>
+                                {data.order_completed_time ? (
+                                    <p>{data.order_completed_time}</p>
+                                ) : (
+                                    <p>--:--</p>
+                                )}
+                            </div>
+                        </div>
+                    ))}
                 </form>
             )}
         </>

@@ -5,7 +5,7 @@ import { TransportDataForm } from "./components/TransportDataForm";
 import styles from "./page.module.css";
 import { TransportList } from "./components/TransportList";
 
-export default function AddFuneral() {
+export default function OrderTransport() {
     const [isClicked, setIsClicked] = useState(false);
     const [isAdd, setIsAdd] = useState(true);
     const [isEdited, setIsEdited] = useState(false);
