@@ -382,7 +382,7 @@ export function CeremonyDetails({ ceremonyId }) {
                             </div>
                         ))}
 
-                        <div className={styles.buttonContainer}>
+                        <div className={styles.buttonContainerr}>
                             <Button
                                 type="button"
                                 className={styles.refreshButton}
