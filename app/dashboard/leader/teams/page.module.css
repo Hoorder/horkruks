@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+@media (max-width: 515px) {
+    .container {
+        border: none;
+    }
+}
