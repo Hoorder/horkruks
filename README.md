@@ -1,4 +1,4 @@
-Horkruks to system stworzony podczas pisania pracy inżynierskiej.
+Horkruks to system stworzony na potrzeby pracy inżynierskiej.
 
 ## Aby zacząć
 
