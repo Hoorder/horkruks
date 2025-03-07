@@ -1,0 +1,165 @@
+.container {
+    width: 410px;
+    border-right: 1px solid var(--border-color);
+}
+
+@media (max-width: 1587) {
+    .container {
+        flex-grow: 1;
+    }
+}
+
+.head {
+    color: var(--black);
+    background-color: var(--white);
+    border-top-left-radius: var(--border-radius);
+    padding: 22px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+@media (max-width: 450px) {
+    .head {
+        border-top-left-radius: 0px;
+    }
+}
+
+.head p:first-of-type {
+    font-size: var(--xlarge-fs);
+    font-weight: var(--semiBold);
+}
+
+.head p:last-of-type {
+    font-weight: var(--regular);
+    color: var(--label-font-color);
+    line-height: 1.5;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    gap: 20px;
+}
+
+.button {
+    cursor: pointer;
+    font-size: var(--large-fs);
+    font-weight: var(--medium);
+    font-family: var(--font-geist-sans);
+    color: var(--white);
+    width: 100%;
+    height: 75px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--button-color);
+    transition: 0.2s;
+}
+
+.button:active {
+    background-color: var(--green) !important;
+}
+
+.tableContainer {
+    width: 100%;
+    height: 500px;
+}
+
+.table {
+    /* margin: 25px;
+    padding: 25px; */
+    border-collapse: collapse;
+    width: -webkit-fill-available;
+}
+
+.table thead {
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.table thead tr th {
+    font-weight: var(--medium);
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.table tbody {
+    text-align: center;
+}
+
+.table tbody tr {
+    border: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.table tbody tr td {
+    padding: 10px 0;
+}
+
+.table tbody tr td:last-of-type {
+    padding: 10px 20px;
+}
+
+@media (max-width: 515px) {
+    .table {
+        margin: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .body {
+        margin: 10px;
+    }
+
+    .container {
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .tableContainer {
+        overflow-y: scroll;
+
+        height: fit-content;
+    }
+}
+
+.errorMsg {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    color: var(--red);
+    font-weight: var(--semiBold);
+}
+
+.succesMsg {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    color: var(--green);
+    font-weight: var(--semiBold);
+}
+
+.editBtn {
+    cursor: pointer;
+}
+
+.tdActionContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.endOrder {
+    position: relative;
+}
+
+.endOrder::after {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 5px;
+    right: 4px;
+    content: "✅";
+    font-size: 12px;
+    border-radius: 50%;
+}

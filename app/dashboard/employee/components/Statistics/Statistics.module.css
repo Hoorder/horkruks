@@ -1,0 +1,25 @@
+.sectionTitle {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.sectionTitle p {
+    font-size: var(--base-fs);
+    font-weight: var(--regular);
+}
+
+.sectionTitle div {
+    height: 2px;
+    width: 90px;
+    margin: 5px 0;
+    background-color: var(--black);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}

@@ -1,0 +1,134 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.sectionTitle {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.sectionTitle p {
+    font-size: var(--base-fs);
+    font-weight: var(--regular);
+}
+
+.sectionTitle div {
+    height: 2px;
+    width: 90px;
+    margin: 5px 0;
+    background-color: var(--black);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    width: 470px;
+    min-width: 400px;
+}
+
+@media (max-width: 515px) {
+    .container {
+        min-width: unset;
+    }
+}
+
+.topBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 24px;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+
+    color: var(--white);
+    background-color: var(--black);
+}
+
+.leftColumn,
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightColumn {
+    gap: 5px;
+}
+
+.acceptBtn,
+.rejectBtn {
+    width: 110px;
+    cursor: pointer;
+    font-size: var(--small-fs);
+    font-weight: var(--light);
+    font-family: var(--font-geist-sans);
+    color: var(--black);
+    background-color: var(--white);
+    padding: 2.5px 10px;
+    border-radius: var(--border-radius);
+    border: unset;
+}
+
+.acceptBtn:hover {
+    color: var(--white);
+    background-color: var(--black) !important;
+}
+
+.rejectBtn:hover {
+    color: var(--white);
+    background-color: var(--black) !important;
+}
+
+.localityName {
+    font-size: var(--large-fs);
+    text-transform: uppercase;
+    font-weight: var(--semiBold);
+}
+
+.localityDate {
+    color: var(--border-color);
+    font-size: var(--base-fs);
+    font-weight: var(--extraLight);
+}
+
+.middleBar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    font-size: var(--base-fs);
+    font-weight: var(--light);
+    padding: 10px 24px;
+
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+}
+
+.middleBar span {
+    font-weight: var(--medium);
+}
+
+.bottomBar {
+    text-align: center;
+    padding: 5px 10px;
+
+    color: var(--white);
+    background-color: var(--black);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.bottomBar > p {
+    font-weight: var(--light);
+}
+
+.bottomBar > p span {
+    font-weight: var(--semiBold);
+}

@@ -1,0 +1,89 @@
+.statisticsCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+
+    border: 1px solid var(--border-color);
+    width: 300px;
+    border-radius: 8px;
+}
+
+.cardName {
+    width: 100%;
+    padding: 10px;
+
+    text-align: center;
+    font-weight: var(--semiBold);
+    text-transform: uppercase;
+    color: var(--white);
+
+    background-color: var(--black);
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+
+    width: 280px;
+    text-align: center;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+@media (max-width: 350px) {
+    .statisticsCard,
+    .panel {
+        width: 100%;
+    }
+}
+
+.panel:first-of-type {
+    margin-top: 10px;
+}
+
+.panel:last-of-type {
+    margin-bottom: 10px;
+}
+
+.panelTop {
+    font-size: var(--base-fs);
+    padding: 5px;
+}
+
+.panelTop p:last-of-type {
+    font-weight: var(--semiBold);
+}
+
+.panelBottom {
+    padding: 5px;
+
+    color: var(--white);
+    font-weight: var(--extraLight);
+
+    background-color: var(--black);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.panelBottom span {
+    font-weight: var(--semiBold);
+}
+
+.localityContainer {
+    margin-top: 10px;
+    width: 80%;
+    font-size: var(--base-fs);
+}
+
+.localityContainer div p {
+    font-weight: var(--extraLight);
+    line-height: 1.5;
+}
+
+.localityContainer div p span {
+    font-weight: var(--semiBold);
+}

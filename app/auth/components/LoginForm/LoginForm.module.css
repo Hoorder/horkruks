@@ -1,0 +1,24 @@
+.passwordContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--blue);
+}
+
+.errorMsg {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}

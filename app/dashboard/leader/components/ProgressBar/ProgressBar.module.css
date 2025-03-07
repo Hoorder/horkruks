@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid var(--black);
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid var(--black);
+}
+
+.progressLevel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    flex-grow: 1;
+
+    color: var(--black);
+    background-color: var(--input-background);
+}
+
+.progressLevel p:first-of-type {
+    font-weight: var(--medium);
+}
+
+.progressLevel p:last-of-type {
+    font-weight: var(--extraLight);
+}
+
+.send {
+    color: white;
+    background-color: #692ae5;
+}
+
+.show {
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.confirmed {
+    color: var(--white);
+    background-color: var(--green);
+}
+
+.endBtn {
+    cursor: pointer;
+    font-weight: var(--regular);
+    font-family: var(--font-geist-sans);
+    color: var(--white);
+    padding: 8px 20px;
+    margin: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--green);
+    transition: 0.2s;
+}
+
+.button:active {
+    background-color: var(--green) !important;
+}

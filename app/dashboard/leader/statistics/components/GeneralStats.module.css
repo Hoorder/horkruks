@@ -1,0 +1,32 @@
+.statisticsCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+
+    border: 1px solid var(--border-color);
+    width: fit-content;
+    padding: 0 10px;
+    border-radius: 8px;
+}
+
+.cardName {
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 0px;
+
+    font-weight: var(--semiBold);
+    color: var(--black);
+    font-size: var(--xlarge-fs);
+
+    background-color: var(--white);
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+}
+
+@media (max-width: 350px) {
+    .statisticsCard {
+        width: 100%;
+    }
+}

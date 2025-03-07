@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+    font-size: 0.875rem;
+    margin: 15px;
+}
+
+.data_container {
+    border: 1px solid #e2e8f0;
+    padding: 6px 15px;
+    color: #666;
+    margin: 0 20px;
+    font-size: 1rem;
+}
