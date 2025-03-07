@@ -1,7 +1,7 @@
 import { Invoices } from "./components/Invoices";
 import styles from "./page.module.css";
 
-export default function ShowEmployees() {
+export default function ShowInvoices() {
     return (
         <div className={styles.container}>
             <div className={styles.head}>
