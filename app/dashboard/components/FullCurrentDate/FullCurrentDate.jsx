@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import clsx from "clsx"; // Umożliwia łączenie klas
+import clsx from "clsx";
 import styles from "./FullCurrentDate.module.css";
 
 export function FullCurrentDate({ className }) {

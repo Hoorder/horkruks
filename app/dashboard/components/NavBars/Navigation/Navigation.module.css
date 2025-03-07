@@ -3,6 +3,7 @@
     height: 100vh;
     border-right: 1px solid var(--border-color);
     background-color: var(--white);
+    z-index: 1;
 }
 
 @media (max-width: 750px) {

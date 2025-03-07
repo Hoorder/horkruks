@@ -23,7 +23,6 @@ export async function POST(req) {
             working_hours_payout,
         } = body;
 
-        // Walidacja danych
         if (working_hours_number < 0 || working_hours_number > 10) {
             return jsonResponse(
                 { error: "Liczba godzin musi być od 1 do 10." },
@@ -40,7 +39,6 @@ export async function POST(req) {
             return jsonResponse({ error: "Uzupełnij pola danymi." }, 401);
         }
 
-        // Dodanie do bazy
         await db.query(
             `INSERT INTO funeral_tasks 
             (id_users_fk, task_date, funeral_ceremony_place, funeral_transport_place, 
@@ -48,8 +46,7 @@ export async function POST(req) {
             funeral_transport_payout, body_preparation_payout, working_hours_payout) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
-                id_users_fk,
-                task_date,
+                id_users_fk, task_date,
                 funeral_ceremony_place,
                 funeral_transport_place,
                 body_preparation_place,

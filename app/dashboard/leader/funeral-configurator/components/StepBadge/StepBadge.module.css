@@ -1,0 +1,44 @@
+.stepContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-size: var(--xlarge-fs);
+    margin: 20px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stepNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+    font-weight: var(--semiBold);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--black);
+}
+
+.stepNumberName {
+    text-transform: uppercase;
+    font-weight: var(--semiBold);
+}
+
+@media (min-width: 951px) {
+    .stepContainer {
+        display: none;
+    }
+}
+
+@media (max-width: 515px) {
+    .stepNumber {
+        width: 40px;
+        height: 40px;
+        font-size: var(--large-fs);
+    }
+    .stepNumberName {
+        font-size: var(--large-fs);
+    }
+}

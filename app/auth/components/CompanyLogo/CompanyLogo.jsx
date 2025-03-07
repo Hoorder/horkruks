@@ -10,7 +10,7 @@ export function CompanyLogo() {
                 height={130}
                 alt="Picture of the author"
                 priority={true}
-                style={{ width: "100%", height: "auto" }} // Ważne, aby dodać height: auto
+                style={{ width: "100%", height: "auto" }}
             />
 
             <p className={styles.company_description}>

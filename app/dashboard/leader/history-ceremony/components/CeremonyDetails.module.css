@@ -1,0 +1,234 @@
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #0000004a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.isHiden {
+    display: none;
+}
+
+.container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+}
+
+.head {
+    background-color: var(--black);
+    color: var(--white);
+    font-size: var(--base-fs);
+    padding: 15px 30px;
+    line-height: 1.5;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.head .head_title {
+    font-size: var(--large-fs);
+    font-weight: var(--medium);
+}
+
+.head span,
+.ceremonyDetailsContainer p span {
+    font-weight: var(--medium);
+}
+
+.stepName {
+    position: relative;
+    font-size: var(--large-fs);
+    font-weight: var(--semiBold);
+    margin-bottom: 20px;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 15px 30px;
+    overflow: scroll;
+}
+
+.containerLeft,
+.containerRight {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    height: 70vh;
+    margin-right: 20px;
+    /* overflow: scroll; */
+}
+
+@media (max-width: 1200px) {
+    .body {
+        height: 300px;
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    .containerLeft,
+    .containerRight {
+        width: fit-content;
+    }
+}
+
+.category {
+    margin-top: 20px;
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.selectContainer select {
+    width: 175px;
+    height: 35px;
+
+    font-family: var(--font-geist-sans);
+    font-size: var(--base-fs);
+    font-weight: var(--medium);
+    border-radius: var(--border-radius);
+    background-color: var(--input-background);
+    border: 1px solid var(--border-color);
+    padding-left: 10px;
+}
+
+.select {
+    display: flex;
+    flex-direction: column;
+}
+
+.selectWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.selectWrapper label {
+    font-size: 16px;
+    font-weight: var(--medium);
+}
+
+.decided {
+    background-color: #8d741d !important;
+    color: var(--white);
+}
+
+.undecided {
+    background-color: #ff0008 !important;
+    color: var(--white);
+}
+
+.buttonContainer {
+    width: 50px;
+    margin-top: 20px;
+}
+
+.containerr {
+    margin-top: 20px;
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.progressLevel {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    flex-grow: 1;
+
+    color: var(--black);
+    background-color: var(--input-background);
+    border-left: 1px solid var(--border-color);
+}
+
+.progressLevel p:first-of-type {
+    font-weight: var(--medium);
+}
+
+.progressLevel p:last-of-type {
+    font-weight: var(--extraLight);
+}
+
+@media (max-width: 800px) {
+    .containerr {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .progressLevel {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+}
+
+.send {
+    color: white;
+    background-color: #692ae5;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.show {
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.confirmed {
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.end {
+    color: var(--white);
+    background-color: var(--green);
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.succesMessage {
+    color: var(--green);
+    font-weight: var(--medium);
+    margin-top: 20px;
+    font-size: var(--base-fs);
+}
+
+.errorMessage {
+    color: var(--red);
+    font-weight: var(--medium);
+    margin-top: 20px;
+    font-size: var(--base-fs);
+}
+
+.buttonContainerr {
+    width: 50px;
+    margin-top: 20px;
+}
+
+.buttonContainerr button {
+    background-color: #692ae5 !important;
+    width: 100%;
+    padding: 2px 2px !important;
+    font-size: 30px !important;
+}

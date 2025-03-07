@@ -1,4 +1,3 @@
-// const defaultHref = `/dashboard/employee`;
 
 export const categories = [
     {
@@ -10,7 +9,7 @@ export const categories = [
         name: "Ceremonia",
         allowedRoles: ["leader"],
         items: [
-            { name: "Dodaj pogrzeb", href: `/add-funeral` },
+            { name: "Dodaj pogrzeb", href: `/funeral-configurator` },
             { name: "Zleć przewóz", href: `/order-transport` },
             { name: "Historia ceremonii", href: `/history-ceremony` },
         ],

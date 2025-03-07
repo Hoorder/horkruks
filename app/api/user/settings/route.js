@@ -26,39 +26,23 @@ export async function GET() {
 
         const query = `
 SELECT 
-    u.id_users,
-    u.first_name,
-    u.last_name,
-    u.phone_number,
-    u.role_handling,
-    t.team_name,
-    u.position,
-    u.funeral_service,
-    u.transport_body,
-    u.hourly_rate,
-    u.dressing_body,
-    u.email
-FROM users u
-LEFT JOIN teams t ON 
-    u.id_users = t.team_manager_id_fk OR
-    u.id_users = t.mourner_one_id_fk OR
-    u.id_users = t.mourner_two_id_fk OR
-    u.id_users = t.mourner_three_id_fk OR
-    u.id_users = t.mourner_four_id_fk OR
-    u.id_users = t.mourner_five_id_fk OR
-    u.id_users = t.mourner_six_id_fk OR
-    u.id_users = t.mourner_seven_id_fk
-WHERE u.id_users = ?;
+   id_users,
+   first_name,
+   last_name,
+   phone_number,
+   role_handling,
+   position,
+   funeral_service,
+   transport_body,
+   hourly_rate,
+   dressing_body,
+   email
+FROM users 
+WHERE id_users = ?;
 `;
 
         const [rows] = await db.query(query, [
-            session.user_id,
-            session.user_id,
-            session.user_id,
-            session.user_id,
-            session.user_id,
-            session.user_id,
-            session.user_id,
+            session.user_id
         ]);
 
         if (rows.length === 0) {

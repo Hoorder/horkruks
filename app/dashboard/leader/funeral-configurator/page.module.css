@@ -1,0 +1,64 @@
+.container {
+    width: fit-content;
+}
+
+.stepName {
+    position: relative;
+    font-size: var(--base-fs);
+    font-weight: var(--medium);
+    margin-bottom: 10px;
+}
+
+.stepName::after {
+    content: " ";
+    position: absolute;
+    bottom: -5px;
+    width: 80px;
+    height: 2px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 560px;
+}
+
+.inputContainer p {
+    margin-top: 10px;
+    font-weight: var(--medium);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 20px;
+
+    font-size: var(--base-fs);
+}
+
+.options div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.options div div {
+    border: 1px solid var(--black);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    font-weight: var(--medium);
+}
+
+.button {
+    margin-top: 50px;
+}

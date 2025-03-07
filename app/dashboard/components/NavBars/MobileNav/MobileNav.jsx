@@ -45,18 +45,35 @@ export function MobileNav({ setIsMenuShown }) {
                         />
                         <p>Menu</p>
                     </div>
-                    <Link
-                        href={`${path}/add-funeral`}
-                        className={styles.option}
-                    >
-                        <Image
-                            src={"/plus-circle.svg"}
-                            width={20}
-                            height={20}
-                            alt="AddFuneral"
-                        />
-                        <p>Zlecenie</p>
-                    </Link>
+
+                    {role === "leader" ? (
+                        <Link
+                            href={`${path}/funeral-configurator`}
+                            className={styles.option}
+                        >
+                            <Image
+                                src={"/plus-circle.svg"}
+                                width={20}
+                                height={20}
+                                alt="AddFuneral"
+                            />
+                            <p>Zlecenie</p>
+                        </Link>
+                    ) : (
+                        <Link
+                            href={`${path}/add-funeral`}
+                            className={styles.option}
+                        >
+                            <Image
+                                src={"/plus-circle.svg"}
+                                width={20}
+                                height={20}
+                                alt="AddFuneral"
+                            />
+                            <p>Zlecenie</p>
+                        </Link>
+                    )}
+
                     {role === "employee" ? (
                         <Link
                             href={`${path}/history-ceremony`}

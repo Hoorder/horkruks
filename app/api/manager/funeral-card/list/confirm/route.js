@@ -30,14 +30,14 @@ export async function PUT(request) {
         }
 
         const query = `
-
         UPDATE funeral_cards
         SET order_confirmed_at = CURRENT_TIMESTAMP() 
-        WHERE id_funeral_cards = ? AND team_manager_id_fk = ?  AND order_confirmed_at IS NULL ;
+        WHERE id_funeral_cards = ?
+        AND team_manager_id_fk = ? 
+        AND order_confirmed_at IS NULL ;
         `;
 
         const values = [id_funeral_card, session.user_id];
-
         const [result] = await db.query(query, values);
 
         if (result.affectedRows === 0) {
