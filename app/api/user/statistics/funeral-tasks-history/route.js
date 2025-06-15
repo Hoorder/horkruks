@@ -36,7 +36,7 @@ export async function GET(request) {
 
         if (yearsRows.length === 0) {
             return jsonResponse(
-                { error: "Nie jesteś przypisany do żadnego pogrzebu." },
+                { error: "Błąd podczas ładowania danych." },
                 404
             );
         }

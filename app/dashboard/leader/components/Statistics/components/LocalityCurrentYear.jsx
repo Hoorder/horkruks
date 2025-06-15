@@ -7,6 +7,7 @@ import styles from "./StatisticsCard.module.css";
 export function LocalityCurrentYear() {
     const [now, setNow] = useState(new Date());
     const [funeralsData, setFuneralsData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(() => {
         const fetchFuneralsData = async () => {

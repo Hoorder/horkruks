@@ -1,15 +1,15 @@
 import db from "@/app/auth/lib/db_connect";
 
 function jsonResponse(data, status = 200) {
-    return new Response(JSON.stringify(data), {
-        status,
-        headers: { "Content-Type": "application/json" },
-    });
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
 export async function GET() {
-    try {
-        const query = `
+  try {
+    const query = `
         SELECT
             u.id_users,
             u.first_name,
@@ -35,17 +35,14 @@ export async function GET() {
         GROUP BY u.id_users, u.first_name, u.last_name;
         `;
 
-        const [rows] = await db.query(query);
+    const [rows] = await db.query(query);
 
-        if (rows.length === 0) {
-            return jsonResponse({ error: "Nie znaleziono faktur." }, 401);
-        }
-
-        return jsonResponse(rows);
-    } catch (error) {
-        return jsonResponse(
-            { error: "Błąd podczas pobierania danych z BD" },
-            500
-        );
+    if (rows.length === 0) {
+      return jsonResponse({ error: "Brak wypłat do wyświetlenia." }, 401);
     }
+
+    return jsonResponse(rows);
+  } catch (error) {
+    return jsonResponse({ error: "Błąd podczas pobierania danych z BD" }, 500);
+  }
 }

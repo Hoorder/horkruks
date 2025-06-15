@@ -4,6 +4,7 @@ import { Panel } from "../../components/Statistics/components/Panel";
 
 export function GeneralStats() {
     const [monthlySalaryData, setMonthlySalaryData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(() => {
         const fetchMonthlySalary = async () => {

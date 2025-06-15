@@ -4,6 +4,7 @@ import { Panel } from "@/app/dashboard/manager/components/Statistics/components/
 
 export function FinancialStatistics() {
     const [monthlySalaryData, setMonthlySalaryData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(() => {
         const fetchMonthlySalary = async () => {
@@ -38,34 +39,35 @@ export function FinancialStatistics() {
                 <div className={styles.statisticsCard} key={stats.unique_key}>
                     <p className={styles.cardName}>Finansowe</p>
 
+
                     <Panel
                         title={"Kwota zarobiona ogólnie:"}
-                        value={`${stats.current_year_total_revenue} Zł.`}
-                        lastYearValue={`${stats.last_year_total_revenue} Zł`}
+                        value={`${stats.current_year_total_revenue ? stats.current_year_total_revenue : "0"} Zł.`}
+                        lastYearValue={`${stats.last_year_total_revenue ? stats.last_year_total_revenue : "0"} Zł`}
                     />
 
                     <Panel
                         title={"Kwota zarobiona z pogrzebów:"}
-                        value={`${stats.current_year_funeral_revenue} Zł.`}
-                        lastYearValue={`${stats.last_year_funeral_revenue} Zł`}
+                        value={`${stats.current_year_funeral_revenue ? stats.current_year_funeral_revenue : "0"} Zł.`}
+                        lastYearValue={`${stats.last_year_funeral_revenue ? stats.last_year_funeral_revenue : "0"} Zł`}
                     />
 
                     <Panel
                         title={"Kwota zarobiona z przewozów:"}
-                        value={`${stats.current_year_transport_revenue} Zł.`}
-                        lastYearValue={`${stats.last_year_transport_revenue} Zł`}
+                        value={`${stats.current_year_transport_revenue ? stats.current_year_transport_revenue : "0"} Zł.`}
+                        lastYearValue={`${stats.last_year_transport_revenue ? stats.last_year_transport_revenue : "0"} Zł`}
                     />
 
                     <Panel
                         title={"Kwota zarobiona z ubierań:"}
-                        value={`${stats.current_year_preparation_revenue} Zł.`}
-                        lastYearValue={`${stats.last_year_preparation_revenue} Zł`}
+                        value={`${stats.current_year_preparation_revenue ? stats.current_year_preparation_revenue : "0"} Zł.`}
+                        lastYearValue={`${stats.last_year_preparation_revenue ? stats.last_year_preparation_revenue: "0"} Zł`}
                     />
 
                     <Panel
                         title={"Kwota zarobiona z godzin:"}
-                        value={`${stats.current_year_working_hours_revenue} Zł.`}
-                        lastYearValue={`${stats.last_year_working_hours_revenue} Zł`}
+                        value={`${stats.current_year_working_hours_revenue ? stats.current_year_working_hours_revenue : "0"} Zł.`}
+                        lastYearValue={`${stats.last_year_working_hours_revenue ? stats.last_year_working_hours_revenue : "0"} Zł`}
                     />
                 </div>
             ))}

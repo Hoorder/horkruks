@@ -1,5 +1,4 @@
-import { cookies } from "next/headers"; // Aby pobrać ciasteczka
-
+import { cookies } from "next/headers";
 import { getIronSession } from "iron-session";
 import { sessionOptions } from "@/app/auth/lib/session";
 import db from "@/app/auth/lib/db_connect";

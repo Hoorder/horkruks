@@ -98,7 +98,7 @@ WHERE id_users_fk = "?";
 
         if (rows.length === 0) {
             return jsonResponse(
-                { error: "Nie jesteś przypisany do żadnego pogrzebu." },
+                { error: "Błąd podczas ładowania danych." },
                 401
             );
         }

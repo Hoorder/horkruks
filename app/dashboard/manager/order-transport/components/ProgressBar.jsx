@@ -5,6 +5,7 @@ import styles from "./ProgressBar.module.css";
 
 export function ProgressBar({ transportId, isClicked }) {
     const [fetchData, setFetchData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(() => {
         if (!transportId) {
