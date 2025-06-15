@@ -3,6 +3,7 @@ import styles from "./LocalityCurrentYear.module.css";
 
 export function LocalityCurrentYear() {
     const [funeralsData, setFuneralsData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(() => {
         const fetchFuneralsData = async () => {

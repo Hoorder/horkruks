@@ -4,6 +4,7 @@ import styles from "./StatisticsCard.module.css";
 
 export function MonthlySalary() {
     const [monthlySalaryData, setMonthlySalaryData] = useState([]);
+    const [errorMsg, setErrorMsg] = useState();
 
     useEffect(() => {
         const fetchMonthlySalary = async () => {
@@ -40,7 +41,7 @@ export function MonthlySalary() {
 
                     <Panel
                         title={"Stan konta:"}
-                        value={`${stats.current_account_balance},00 zł`}
+                        value={`${stats.current_account_balance ? stats.current_account_balance : "00"},00 zł`}
                         lastYearValue={`${stats.account_balance_last_year},00 zł`}
                     />
 
@@ -64,8 +65,8 @@ export function MonthlySalary() {
 
                     <Panel
                         title={"Godzin w tym miesiącu:"}
-                        value={stats.current_month_working_hours}
-                        lastYearValue={stats.last_year_same_month_working_hours}
+                        value={`${stats.current_month_working_hours ? stats.current_month_working_hours : "0"}`}
+                        lastYearValue={`${stats.last_year_same_month_working_hours ? stats.last_year_same_month_working_hours : "0"}`}
                     />
                 </div>
             ))}

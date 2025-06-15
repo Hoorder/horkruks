@@ -1,15 +1,15 @@
 import db from "@/app/auth/lib/db_connect";
 
 function jsonResponse(data, status = 200) {
-    return new Response(JSON.stringify(data), {
-        status,
-        headers: { "Content-Type": "application/json" },
-    });
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
 export async function GET() {
-    try {
-        const query = `
+  try {
+    const query = `
         SELECT id_teams, team_name, team_manager_id_fk, mourner_one_id_fk, mourner_two_id_fk, mourner_three_id_fk, mourner_four_id_fk, mourner_five_id_fk, mourner_six_id_fk, mourner_seven_id_fk,
         CONCAT(u.first_name, " ", u.last_name) AS manager,
         CONCAT(m1.first_name, " ", m1.last_name) AS mourner_one,
@@ -31,20 +31,14 @@ export async function GET() {
 
         `;
 
-        const [rows] = await db.query(query);
+    const [rows] = await db.query(query);
 
-        if (rows.length === 0) {
-            return jsonResponse(
-                { error: "Nie jesteś przypisany do żadnego przewozu." },
-                401
-            );
-        }
-
-        return jsonResponse(rows);
-    } catch (error) {
-        return jsonResponse(
-            { error: "Błąd podczas pobierania danych z BD" },
-            500
-        );
+    if (rows.length === 0) {
+      return jsonResponse({ error: "Nie ma żadnego zespołu." }, 401);
     }
+
+    return jsonResponse(rows);
+  } catch (error) {
+    return jsonResponse({ error: "Błąd podczas pobierania danych z BD" }, 500);
+  }
 }

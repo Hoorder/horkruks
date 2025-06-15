@@ -82,7 +82,7 @@ export const sendEmail = async (
             <p>Wniesienie ciała ${funeralEnteryTime}</p>
             <p>Msza pogrzebowa ${funeralTime}</p>
             <p>Proszę o potwierdzenie swojej obecności, klikając w poniższy przycisk:</p>
-            <a href="http://192.168.227.13:3000/" class="button">Potwierdź obecność</a>
+            <a href="http://192.168.227.13:3000/" class="button">Potwierdź obecność</a> 
             <p>Dziękuję za Twoją odpowiedź.</p>
             <div class="footer">
                 <p>Ten e-mail został wygenerowany automatycznie, prosimy na niego nie odpowiadać.</p>
@@ -92,6 +92,7 @@ export const sendEmail = async (
     </html>
     `,
     };
+    //TODO: do zmiany jest IP w 85 linijce
 
     try {
         const info = await transporter.sendMail(mailOptions);

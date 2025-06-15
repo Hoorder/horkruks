@@ -162,7 +162,7 @@ export function FuneralCardPreview() {
                             : " Nie"}
                     </p>
                     <p>{state.manager}</p>
-                    <p>{state.mournerOne} {state.mournerOneEmail}</p>
+                    <p>{state.mournerOne}</p>
                     <p>{state.mournerTwo}</p>
                     <p>{state.mournerThree}</p>
                 </div>
