@@ -3,28 +3,28 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    secure: true,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-    },
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
 });
 
 export const sendEmail = async (
-    to,
-    funeralLocality,
-    funeralTime,
-    funeralEnteryTime,
-    funeralGroupUpTime,
-    funeralDate
+  to,
+  funeralLocality,
+  funeralTime,
+  funeralEnteryTime,
+  funeralGroupUpTime,
+  funeralDate
 ) => {
-    const mailOptions = {
-        from: `Horkruks <${process.env.EMAIL_USER}>`,
-        to,
-        subject: `Zostałeś przypisany do pogrzebu!`,
-        html: `
+  const mailOptions = {
+    from: `Horkruks <${process.env.EMAIL_USER}>`,
+    to,
+    subject: `Zostałeś przypisany do pogrzebu!`,
+    html: `
     <!DOCTYPE html>
     <html>
     <head>
@@ -82,7 +82,7 @@ export const sendEmail = async (
             <p>Wniesienie ciała ${funeralEnteryTime}</p>
             <p>Msza pogrzebowa ${funeralTime}</p>
             <p>Proszę o potwierdzenie swojej obecności, klikając w poniższy przycisk:</p>
-            <a href="http://192.168.227.13:3000/" class="button">Potwierdź obecność</a> 
+            <a href="https://dm72703.domenomania.eu/" class="button">Potwierdź obecność</a> 
             <p>Dziękuję za Twoją odpowiedź.</p>
             <div class="footer">
                 <p>Ten e-mail został wygenerowany automatycznie, prosimy na niego nie odpowiadać.</p>
@@ -91,30 +91,29 @@ export const sendEmail = async (
     </body>
     </html>
     `,
-    };
-    //TODO: do zmiany jest IP w 85 linijce
+  };
 
-    try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log("E-mail wysłany:", info.messageId);
-        return info;
-    } catch (error) {
-        console.error("Błąd podczas wysyłania e-maila:", error);
-        throw error;
-    }
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("E-mail wysłany:", info.messageId);
+    return info;
+  } catch (error) {
+    console.error("Błąd podczas wysyłania e-maila:", error);
+    throw error;
+  }
 };
 
 export const sendTransportAddEmail = async (
-    to,
-    transportFrom,
-    transportTo,
-    orderingPhoneNumber
+  to,
+  transportFrom,
+  transportTo,
+  orderingPhoneNumber
 ) => {
-    const mailOptions = {
-        from: `Horkruks <${process.env.EMAIL_USER}>`,
-        to,
-        subject: `Otrzymałeś nowe zlecenie przewozu!`,
-        html: `
+  const mailOptions = {
+    from: `Horkruks <${process.env.EMAIL_USER}>`,
+    to,
+    subject: `Otrzymałeś nowe zlecenie przewozu!`,
+    html: `
     <!DOCTYPE html>
     <html>
     <head>
@@ -170,7 +169,7 @@ export const sendTransportAddEmail = async (
             <p>Zostałeś przypisany do nowego zlecenia przewozu zwłok z ${transportFrom} do ${transportTo}</p>
             <p>Telefon do zleceniodawcy ${orderingPhoneNumber}</p>
             <p>Więcej informacji po kliknięciu w przycisk ponizej</p>
-            <a href="http://192.168.227.13:3000/" class="button">Do systemu</a>
+            <a href="https://dm72703.domenomania.eu/" class="button">Do systemu</a>
             <div class="footer">
                 <p>Ten e-mail został wygenerowany automatycznie, prosimy na niego nie odpowiadać.</p>
             </div>
@@ -178,23 +177,14 @@ export const sendTransportAddEmail = async (
     </body>
     </html>
     `,
-    };
+  };
 
-    try {
-        const info = await transporter.sendMail(mailOptions); // Poprawiona linia
-        console.log("E-mail wysłany:", info.messageId);
-        return info;
-    } catch (error) {
-        console.error("Błąd podczas wysyłania e-maila:", error);
-        throw error;
-    }
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("E-mail wysłany:", info.messageId);
+    return info;
+  } catch (error) {
+    console.error("Błąd podczas wysyłania e-maila:", error);
+    throw error;
+  }
 };
-
-// try {
-//   const result = await sendEmail(
-//       "praca.hoorder@o2.pl, kamilc405@gmail.com"
-//   );
-//   console.log("E-mail wysłany pomyślnie:", result);
-// } catch (error) {
-//   console.error("Błąd podczas wysyłania e-maila:", error);
-// }

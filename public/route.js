@@ -37,7 +37,7 @@ export async function POST(req) {
         doc.pipe(writeStream);
 
         // 🔹 LOGO FIRMY
-        doc.fontSize(25).text("F.P Galant", 50, 50, {
+        doc.fontSize(25).text("F.P Hades", 50, 50, {
             align: "left",
             width: 200,
         });
@@ -49,7 +49,7 @@ export async function POST(req) {
             width: 200,
         });
         doc.fontSize(8).text(
-            `Wystawiona dnia ${currentDate} w Gdansku.`,
+            `Wystawiona dnia ${currentDate} w Blazowej.`,
             400,
             70,
             { align: "left", width: 200 }
@@ -57,7 +57,7 @@ export async function POST(req) {
 
         // 🔹 DANE SPRZEDAWCY
         doc.fontSize(12)
-            .text("Firma Pogrzebowa Galant", 50, 100)
+            .text("Firma Pogrzebowa Hades", 50, 100)
             .text("ul. Przykladowa 123", 50, 115)
             .text("00-001 Warszawa", 50, 130)
             .text("NIP: 123-456-78-90", 50, 145);

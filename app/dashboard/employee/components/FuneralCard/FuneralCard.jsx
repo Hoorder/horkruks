@@ -54,9 +54,6 @@ export function FuneralCard() {
             }
 
             setIsSelected(true);
-
-            // alert("Dane pogrzebu zostały zaktualizowane!");
-            //TODO: Dodac obsluge
         } catch (error) {
             console.error("Błąd podczas aktualizacji:", error);
         }

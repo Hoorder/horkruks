@@ -1,111 +1,111 @@
 .sectionTitle {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
 .sectionTitle p {
-    font-size: var(--base-fs);
-    font-weight: var(--regular);
+  font-size: var(--base-fs);
+  font-weight: var(--regular);
 }
 
 .sectionTitle div {
-    height: 2px;
-    width: 90px;
-    margin: 5px 0;
-    background-color: var(--black);
+  height: 2px;
+  width: 90px;
+  margin: 5px 0;
+  background-color: var(--black);
 }
 
 .container {
-    width: 490px;
-    border-right: 1px solid var(--border-color);
+  width: 490px;
+  border-right: 1px solid var(--border-color);
 }
 
 @media (max-width: 1587) {
-    .container {
-        flex-grow: 1;
-    }
+  .container {
+    flex-grow: 1;
+  }
 }
 
 .head {
-    color: var(--white);
-    background-color: var(--black);
-    border-top-left-radius: var(--border-radius);
-    padding: 22px 30px;
+  color: var(--white);
+  background-color: var(--black);
+  border-top-left-radius: var(--border-radius);
+  padding: 22px 30px;
 }
 
 @media (max-width: 450px) {
-    .head {
-        border-top-left-radius: 0px;
-    }
+  .head {
+    border-top-left-radius: 0px;
+  }
 }
 
 .head p:first-of-type {
-    font-size: var(--xlarge-fs);
-    font-weight: var(--semiBold);
+  font-size: var(--xlarge-fs);
+  font-weight: var(--semiBold);
 }
 
 .head p:last-of-type {
-    font-weight: var(--extraLight);
-    line-height: 1.5;
+  font-weight: var(--extraLight);
+  line-height: 1.5;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .segment {
-    width: 100%;
-    padding: 5px 30px;
-    border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  padding: 5px 30px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 @media (max-width: 420px) {
-    .segment {
-        padding: 0 30px;
-    }
+  .segment {
+    padding: 0 20px;
+  }
 }
 
 .inputContainers {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 20px;
 }
 
 .button {
-    cursor: pointer;
-    font-size: var(--base-fs);
-    font-weight: var(--regular);
-    font-family: var(--font-geist-sans);
-    color: var(--white);
-    padding: 9px 50px;
-    margin: 10px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    background-color: var(--button-color);
-    transition: 0.2s;
+  cursor: pointer;
+  font-size: var(--base-fs);
+  font-weight: var(--regular);
+  font-family: var(--font-geist-sans);
+  color: var(--white);
+  padding: 9px 50px;
+  margin: 10px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--button-color);
+  transition: 0.2s;
 }
 
 .button:active {
-    background-color: var(--green) !important;
+  background-color: var(--green) !important;
 }
 
 .errorMsg {
-    display: block;
-    margin: 0 auto;
-    margin-top: 5px;
-    color: var(--red);
-    font-weight: var(--semiBold);
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  color: var(--red);
+  font-weight: var(--semiBold);
 }
 
 .succesMsg {
-    display: block;
-    margin: 0 auto;
-    margin-top: 5px;
-    color: var(--green);
-    font-weight: var(--semiBold);
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  color: var(--green);
+  font-weight: var(--semiBold);
 }

@@ -1,33 +1,39 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    margin: 16px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .label {
-    font-weight: var(--medium);
-    font-size: var(--small-fs);
-    margin-bottom: 6px;
+  font-weight: var(--medium);
+  font-size: var(--small-fs);
+  margin-bottom: 6px;
 }
 
 .input {
-    width: 290px;
-    height: 35px;
-    font-family: var(--font-geist-sans);
-    font-size: var(--base-fs);
-    font-weight: var(--medium);
-    border-radius: var(--border-radius);
-    background-color: var(--input-background);
-    border: 1px solid var(--border-color);
-    padding-left: 15px;
+  width: 290px;
+  height: 35px;
+  font-family: var(--font-geist-sans);
+  font-size: var(--base-fs);
+  font-weight: var(--medium);
+  border-radius: var(--border-radius);
+  background-color: var(--input-background);
+  border: 1px solid var(--border-color);
+  padding-left: 15px;
 }
 
 @media (max-width: 420px) {
-    .container {
-        margin-top: 5px;
-        margin-bottom: 0px;
-    }
+  .container {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 360px) {
+  .input {
+    width: 100% !important;
+  }
 }
