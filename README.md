@@ -1,4 +1,4 @@
-# ⚰️ Horkruks – System Zarządzania Firmą Pogrzebową
+# ⚰️ Horkruks – System do zarządzania zakładem pogrzebowym
 
 Horkruks to nowoczesny i intuicyjny system stworzony z myślą o kompleksowym zarządzaniu firmą pogrzebową. Umożliwia sprawną organizację pracy oferując dedykowane panele dla pracowników na różnych szczeblach.
 
