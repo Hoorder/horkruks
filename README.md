@@ -14,6 +14,17 @@ Horkruks to nowoczesny i intuicyjny system stworzony z myślą o kompleksowym za
 
 ---
 
+## 🧑‍💼 Testowe Konta
+(Zachęcam do testowania konta pracowniczego nr.1 bo tam jest najwięcej danych)
+### 🔹 Loginy:
+szef.horkruks@horkruks.pl,
+kierownik.pierwszy@horkruks.pl,
+pracownik.pierwszy@horkruks.pl (nie usuwajcie konta),
+pracownik.drugi,
+pracownik.trzeci itd.,
+### 🔹 Hasła:
+horkruks
+
 ## 🧑‍💼 Role i panele w systemie
 
 ### 🔹 Pracownik
